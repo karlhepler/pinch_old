@@ -1,0 +1,20 @@
+{
+    "name": "oldtimeguitarguy/budget",
+    "description": "My own little budget",
+    "require-dev": {
+        "phpspec/phpspec": "^2.5"
+    },
+    "authors": [
+        {
+            "name": "Karl Hepler",
+            "email": "khepler@brandmovers.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Budget\\": "src/"
+        }
+    }
+}

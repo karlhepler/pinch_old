@@ -1,0 +1,4 @@
+suites:
+  budget_suite:
+    namespace: Budget
+    psr4_prefix: Budget
