@@ -71,4 +71,17 @@ class Money
     {
         return number_format($this->amount(), 2);
     }
+
+    /**
+     * Add this to other money and return money
+     *
+     * @param  Money $money
+     * @return Money
+     */
+    public function add(Money $money)
+    {
+        return new Money(
+            $this->rawAmount() + $money->rawAmount()
+        );
+    }
 }
