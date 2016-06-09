@@ -25,7 +25,7 @@ class TransactionListSpec extends ObjectBehavior
         $this->count()->shouldBe(1);
     }
 
-    function it_can_return_the_sum_of_transactions(Transaction $t1, Money $m1, Transaction $t2, Money $m2)
+    function it_can_return_the_balance_of_transactions(Transaction $t1, Money $m1, Transaction $t2, Money $m2)
     {
         $m1->rawAmount()->willReturn(300);
         $m2->rawAmount()->willReturn(200);
@@ -35,7 +35,7 @@ class TransactionListSpec extends ObjectBehavior
         $this->record($t1);
         $this->record($t2);
 
-        $this->sum()->shouldReturnAnInstanceOf(Money::class);
-        $this->sum()->rawAmount()->shouldReturn(500);
+        $this->balance()->shouldReturnAnInstanceOf(Money::class);
+        $this->balance()->rawAmount()->shouldReturn(500);
     }
 }

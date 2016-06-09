@@ -46,14 +46,15 @@ class TransactionList
 
     /**
      * Calculate the sum of all transactions
+     * aka. the balance
      *
      * @return Money
      */
-    public function sum()
+    public function balance()
     {
         return array_reduce($this->transactions,
             function(Money $total, Transaction $transaction) {
-                return $total->add($transaction->money());
+                return $total->sum($transaction->money());
             }, new Money);
     }
 }

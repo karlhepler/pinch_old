@@ -43,15 +43,15 @@ class MoneySpec extends ObjectBehavior
         $this->rawAmount()->shouldReturn(4275);
     }
 
-    function it_can_add_money_and_return_a_new_instance(Money $money)
+    function it_can_return_the_sum_of_this_and_another_money_object(Money $money)
     {
         $money->rawAmount()->willReturn(1000);
 
         // Make sure an instance of Money is returned
-        $this->add($money)->shouldReturnAnInstanceOf(Money::class);
+        $this->sum($money)->shouldReturnAnInstanceOf(Money::class);
 
         // Make sure the returned money value is 5275
-        $this->add($money)->rawAmount()->shouldBe(5275);
+        $this->sum($money)->rawAmount()->shouldBe(5275);
 
         // Make sure this value hasn't changed
         $this->rawAmount()->shouldBe(4275);

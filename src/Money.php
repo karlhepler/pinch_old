@@ -78,7 +78,7 @@ class Money
      * @param  Money $money
      * @return Money
      */
-    public function add(Money $money)
+    public function sum(Money $money)
     {
         return new Money(
             $this->rawAmount() + $money->rawAmount()
