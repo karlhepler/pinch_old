@@ -54,7 +54,7 @@ class TransactionList
     {
         return array_reduce($this->transactions,
             function(Money $total, Transaction $transaction) {
-                return $total->sum($transaction->money());
+                return $total->add($transaction->money());
             }, new Money);
     }
 }
