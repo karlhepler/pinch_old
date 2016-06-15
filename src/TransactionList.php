@@ -3,8 +3,9 @@
 namespace Budget;
 
 use Budget\Transaction;
+use Budget\Contracts\Collection;
 
-class TransactionList
+class TransactionList implements Collection
 {
     /**
      * The transactions
