@@ -7,6 +7,78 @@
 
 namespace OldTimeGuitarGuy\Budget;
 
+use OldTimeGuitarGuy\Budget\Money;
+use OldTimeGuitarGuy\Budget\Account;
+use OldTimeGuitarGuy\Budget\Transaction;
+
 class Split
 {
+    /**
+     * The split's money
+     *
+     * @var \OldTimeGuitarGuy\Budget\Money
+     */
+    protected $money;
+
+    /**
+     * The split's transaction
+     *
+     * @var \OldTimeGuitarGuy\Budget\Transaction
+     */
+    protected $transaction;
+
+    /**
+     * The split's account
+     *
+     * @var \OldTimeGuitarGuy\Budget\Account
+     */
+    protected $account;
+
+    /**
+     * Split (aka. Ledger Entry)
+     *
+     * @param \OldTimeGuitarGuy\Budget\Money       $money
+     * @param \OldTimeGuitarGuy\Budget\Transaction $transaction
+     * @param \OldTimeGuitarGuy\Budget\Account     $account
+     */
+    public function __construct(Money $money, Transaction $transaction, Account $account)
+    {
+        $this->money = $money;
+        $this->transaction = $transaction;
+        $this->account = $account;
+    }
+
+    ////////////////////
+    // PUBLIC METHODS //
+    ////////////////////
+
+    /**
+     * Get the split's money
+     *
+     * @return \OldTimeGuitarGuy\Budget\Money
+     */
+    public function money()
+    {
+        return $this->money;
+    }
+
+    /**
+     * Get the split's transaction
+     *
+     * @return \OldTimeGuitarGuy\Budget\Transaction
+     */
+    public function transaction()
+    {
+        return $this->transaction;
+    }
+
+    /**
+     * Get the split's account
+     *
+     * @return \OldTimeGuitarGuy\Budget\Account
+     */
+    public function account()
+    {
+        return $this->account;
+    }
 }
