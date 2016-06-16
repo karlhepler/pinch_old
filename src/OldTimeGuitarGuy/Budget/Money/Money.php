@@ -1,6 +1,6 @@
 <?php
 
-namespace OldTimeGuitarGuy\Budget;
+namespace OldTimeGuitarGuy\Budget\Money;
 
 abstract class Money
 {
@@ -29,8 +29,8 @@ abstract class Money
     /**
      * Get the sum of this and another Money object
      *
-     * @param  \OldTimeGuitarGuy\Budget\Money  $money
-     * @return \OldTimeGuitarGuy\Budget\Money
+     * @param  \OldTimeGuitarGuy\Budget\Money\Money  $money
+     * @return \OldTimeGuitarGuy\Budget\Money\Money
      */
     public function sum(Money $money)
     {

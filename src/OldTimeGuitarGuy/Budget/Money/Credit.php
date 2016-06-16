@@ -1,6 +1,6 @@
 <?php
 
-namespace OldTimeGuitarGuy\Budget;
+namespace OldTimeGuitarGuy\Budget\Money;
 
 class Credit extends Money
 {

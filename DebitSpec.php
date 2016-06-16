@@ -4,9 +4,9 @@ namespace spec\OldTimeGuitarGuy\Budget;
 
 use Prophecy\Argument;
 use PhpSpec\ObjectBehavior;
-use OldTimeGuitarGuy\Budget\Debit;
-use OldTimeGuitarGuy\Budget\Money;
-use OldTimeGuitarGuy\Budget\Credit;
+use OldTimeGuitarGuy\Budget\Money\Debit;
+use OldTimeGuitarGuy\Budget\Money\Money;
+use OldTimeGuitarGuy\Budget\Money\Credit;
 
 class DebitSpec extends ObjectBehavior
 {

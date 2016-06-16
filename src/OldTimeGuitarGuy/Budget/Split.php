@@ -7,16 +7,16 @@
 
 namespace OldTimeGuitarGuy\Budget;
 
-use OldTimeGuitarGuy\Budget\Money;
 use OldTimeGuitarGuy\Budget\Account;
 use OldTimeGuitarGuy\Budget\Transaction;
+use OldTimeGuitarGuy\Budget\Money\Money;
 
 class Split
 {
     /**
      * The split's money
      *
-     * @var \OldTimeGuitarGuy\Budget\Money
+     * @var \OldTimeGuitarGuy\Budget\Money\Money
      */
     protected $money;
 
@@ -37,7 +37,7 @@ class Split
     /**
      * Split (aka. Ledger Entry)
      *
-     * @param \OldTimeGuitarGuy\Budget\Money       $money
+     * @param \OldTimeGuitarGuy\Budget\Money\Money $money
      * @param \OldTimeGuitarGuy\Budget\Transaction $transaction
      * @param \OldTimeGuitarGuy\Budget\Account     $account
      */
@@ -55,7 +55,7 @@ class Split
     /**
      * Get the split's money
      *
-     * @return \OldTimeGuitarGuy\Budget\Money
+     * @return \OldTimeGuitarGuy\Budget\Money\Money
      */
     public function money()
     {

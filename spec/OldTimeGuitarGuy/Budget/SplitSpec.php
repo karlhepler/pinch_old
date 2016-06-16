@@ -4,10 +4,10 @@ namespace spec\OldTimeGuitarGuy\Budget;
 
 use Prophecy\Argument;
 use PhpSpec\ObjectBehavior;
-use OldTimeGuitarGuy\Budget\Money;
 use OldTimeGuitarGuy\Budget\Split;
 use OldTimeGuitarGuy\Budget\Account;
 use OldTimeGuitarGuy\Budget\Transaction;
+use OldTimeGuitarGuy\Budget\Money\Money;
 
 class SplitSpec extends ObjectBehavior
 {
