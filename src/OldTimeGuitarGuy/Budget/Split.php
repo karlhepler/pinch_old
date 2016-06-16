@@ -35,17 +35,35 @@ class Split
     protected $account;
 
     /**
+     * The split's memo
+     *
+     * @var string
+     */
+    protected $memo;
+
+    /**
+     * The split's reconciliation status
+     *
+     * @var boolean
+     */
+    protected $isReconciled;
+
+    /**
      * Split (aka. Ledger Entry)
      *
      * @param \OldTimeGuitarGuy\Budget\Money\Money $money
      * @param \OldTimeGuitarGuy\Budget\Transaction $transaction
      * @param \OldTimeGuitarGuy\Budget\Account     $account
+     * @param string $memo
+     * @param boolean $isReconciled
      */
-    public function __construct(Money $money, Transaction $transaction, Account $account)
+    public function __construct(Money $money, Transaction $transaction, Account $account, $memo = '', $isReconciled = false)
     {
         $this->money = $money;
         $this->transaction = $transaction;
         $this->account = $account;
+        $this->memo = $memo;
+        $this->isReconciled = $isReconciled;
     }
 
     ////////////////////
@@ -80,5 +98,45 @@ class Split
     public function account()
     {
         return $this->account;
+    }
+
+    /**
+     * Get the split's memo
+     *
+     * @return string
+     */
+    public function memo()
+    {
+        return $this->memo;
+    }
+
+    /**
+     * Determine if the split is reconciled
+     *
+     * @return boolean
+     */
+    public function isReconciled()
+    {
+        return $this->isReconciled;
+    }
+
+    /**
+     * Reconcile the split
+     *
+     * @return boolean
+     */
+    public function reconcile()
+    {
+        return $this->isReconciled = true;
+    }
+
+    /**
+     * Unreconcile the split
+     *
+     * @return boolean
+     */
+    public function unreconcile()
+    {
+        return $this->isReconciled = false;
     }
 }

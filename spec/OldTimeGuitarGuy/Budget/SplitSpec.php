@@ -13,7 +13,7 @@ class SplitSpec extends ObjectBehavior
 {
     function let(Money $money, Transaction $transaction, Account $account)
     {
-        $this->beConstructedWith($money, $transaction, $account);
+        $this->beConstructedWith($money, $transaction, $account, 'This is a great memo.');
     }
 
     function it_is_initializable()
@@ -34,5 +34,19 @@ class SplitSpec extends ObjectBehavior
     function it_points_to_a_single_account()
     {
         $this->account()->shouldBeAnInstanceOf(Account::class);
+    }
+
+    function it_has_a_memo()
+    {
+        $this->memo()->shouldReturn('This is a great memo.');
+    }
+
+    function it_can_reconcile()
+    {
+        $this->isReconciled()->shouldBe(false);
+        $this->reconcile()->shouldBe(true);
+        $this->isReconciled()->shouldBe(true);
+        $this->unreconcile()->shouldBe(false);
+        $this->isReconciled()->shouldBe(false);
     }
 }
