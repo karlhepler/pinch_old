@@ -43,4 +43,14 @@ class TransactionSpec extends ObjectBehavior
         $this->credit->amount()->willReturn(0);
         $this->shouldBeValid();
     }
+
+    function it_has_a_transaction_date()
+    {
+        $this->transactedAt()->shouldBeAnInstanceOf(\DateTime::class);
+    }
+
+    function it_has_a_description()
+    {
+        $this->description()->shouldBeString();
+    }
 }
