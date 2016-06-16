@@ -1,11 +1,11 @@
 <?php
-/**
- * List of transactions in chronological order
- */
 
 namespace OldTimeGuitarGuy\Budget;
 
-class Journal extends Book
+use OldTimeGuitarGuy\Budget\Money\Money;
+use OldTimeGuitarGuy\Budget\Money\Credit;
+
+class Splits extends Book
 {
     ////////////////////
     // PUBLIC METHODS //
@@ -18,7 +18,9 @@ class Journal extends Book
      */
     public function balance()
     {
-        throw new \Exception('Method not implemented');
+        return $this->reduce(function(Money $carry, Split $current) {
+            return $carry->sum($current->money());
+        });
     }
 
     ///////////////////////
@@ -32,6 +34,6 @@ class Journal extends Book
      */
     protected function elementType()
     {
-        throw new \Exception('Method not implemented');
+        return Split::class;
     }
 }

@@ -7,8 +7,6 @@
 
 namespace OldTimeGuitarGuy\Budget;
 
-use OldTimeGuitarGuy\Budget\Account;
-use OldTimeGuitarGuy\Budget\Transaction;
 use OldTimeGuitarGuy\Budget\Money\Money;
 
 class Split
