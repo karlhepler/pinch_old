@@ -6,12 +6,7 @@ BUDGET
 * other formatting functions
 * different currency representations
 
-Accounts can be arranged in a hierarchical tree. The nodes of the tree
-are called "Account Groups". By accounting
-convention, the value of an Account is equal to the value of all of its
-Splits plus the value of all of its sub-Accounts.
-
-## Account/Ledger
+## Account
 This is the base account object that all accounts descend from
 List of Splits/Ledger Entries that pertain to it
 name
@@ -50,16 +45,19 @@ Assets - Liabilities = Equity + (Income - Expenses)
 List of transactions in chronological order
 
 ## Transaction
-List of splits/ledger entries
+List of splits/ledger entries - Transaction Ledger
 transacted_at
 currency to calculate all splits in
 description
 id number
 sum of all splits must be 0
 
-## LedgerEntry (aka. Split)
+## Ledger
+group/book/collection of related accounts
+
+## LedgerEntry (aka. Split / Record)
 amount / MONEY
-Points to one debited account
+Points to one account
 Points to one parent transaction
 memo
 reconciled flag & timestamp - possibly a RECONCILITION object
