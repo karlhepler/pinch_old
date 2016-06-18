@@ -10,11 +10,10 @@ BUDGET
 This is the base account object that all accounts descend from
 List of Splits/Ledger Entries that pertain to it
 name
-code number?
 description
-notes
-Points to the commodity (aka. vendor/payer) used for all splits in this Ledger/Account
-the currency that all child splits exist in ('USD')
+<!-- notes -->
+<!-- Points to the commodity (aka. vendor/payer) used for all splits in this Ledger/Account -->
+<!-- the currency that all child splits exist in ('USD') -->
 
 ## Credit > Account
 This is a credit account type
@@ -45,9 +44,9 @@ Assets - Liabilities = Equity + (Income - Expenses)
 List of transactions in chronological order
 
 ## Transaction
-List of splits/ledger entries - Transaction Ledger
+List of splits/ledger entries
 transacted_at
-currency to calculate all splits in
+<!-- currency to calculate all splits in -->
 description
 id number
 sum of all splits must be 0
