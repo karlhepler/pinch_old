@@ -15,7 +15,7 @@ trait SingleTableInheritance
     public function newFromBuilder($attributes = [], $connection = null)
     {
         // Create a new instance based on the type
-        $model = new $this->inheritanceMap[$attributes->type];
+        $model = new $this->inheritanceMap[$attributes['type']];
         $model->exists = true;
 
         $model->setRawAttributes((array) $attributes, true);

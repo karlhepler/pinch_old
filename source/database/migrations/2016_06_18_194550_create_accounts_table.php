@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMoneyTable extends Migration
+class CreateAccountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,11 @@ class CreateMoneyTable extends Migration
      */
     public function up()
     {
-        Schema::create('money', function (Blueprint $table) {
+        Schema::create('accounts', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
 
-            $table->unsignedInteger('value')->default(0);
-
-            $table->unsignedInteger('split_id');
-            $table->foreign('split_id')->references('id')->on('splits')->onDelete('cascade');
+            $table->integer('balance')->default(0);
         });
     }
 
@@ -30,6 +27,6 @@ class CreateMoneyTable extends Migration
      */
     public function down()
     {
-        Schema::drop('money');
+        Schema::drop('accounts');
     }
 }

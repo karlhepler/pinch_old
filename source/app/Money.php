@@ -2,10 +2,32 @@
 
 namespace App;
 
-use App\Traits\Money\Relationships;
-use Illuminate\Database\Eloquent\Model;
-
-class Money extends Model
+class Money
 {
-    use Relationships;
+    /**
+     * The raw value
+     *
+     * @var integer
+     */
+    protected $value;
+
+    /**
+     * Money
+     *
+     * @param integer $value
+     */
+    public function __construct($value = 0)
+    {
+        $this->value = $value;
+    }
+
+    /**
+     * Get the raw value
+     *
+     * @return integer
+     */
+    public function value()
+    {
+        return $this->value;
+    }
 }
