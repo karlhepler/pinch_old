@@ -27,6 +27,10 @@ class Money implements Valuable
         $this->value = $value;
     }
 
+    ////////////////////
+    // PUBLIC METHODS //
+    ////////////////////
+
     /**
      * Get the raw value
      *
