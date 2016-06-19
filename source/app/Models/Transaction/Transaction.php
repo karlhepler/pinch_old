@@ -90,6 +90,7 @@ class Transaction extends Model
          * * * Liability - balance sheet
          * * * Revenue - income statement
          * * * Equity - balance sheet
+         * * * ContraAsset - balance sheet - useful for calculating accumulated depreciation
          * Ledger
          * Journal
          * JournalEntry / Transaction
