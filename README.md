@@ -64,3 +64,26 @@ reconciled flag & timestamp - possibly a RECONCILITION object
 ## Commodity (aka. vendor/payer)
 
 ## Reconcilition
+
+
+
+-------
+
+Income Statement Accounts
+**Revenue** is what you earn
+**Expense** is a bill you must pay
+
+Balance Sheet Accounts
+**Asset** is what you own
+**Liability** is what you owe
+**Equity** is your investment in the company
+
+Basically, the journal entry describes which accounts are affected with debits & credits
+The transaction itself is the facilitator, which creates the journal entry
+A ledger entry must also be created that matches the journal entry
+This can be done at the same time with computer systems
+
+At the end of the year, we make an income statement & a balance sheet
+However, the balance sheet won't balance unless:
+1. We flush the income statement accounts into "retained earnings" (Income - Expenses)
+2. We put "retained earnings" under equity and this balances the balance sheet
