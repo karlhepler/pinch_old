@@ -2,7 +2,7 @@
 
 namespace App\Collections;
 
-use Illuminate\Support\Collection;
+use App\Collections\Abstracts\Register;
 
 /**
  * The journal is the book of first entry.
@@ -10,7 +10,15 @@ use Illuminate\Support\Collection;
  * We can't use the concept exactly the same way we would
  * on paper, but the name can stick around.
  */
-class Journal extends Collection
+class Journal extends Register
 {
-    //
+    /**
+     * Get the balance of this register
+     *
+     * @return \App\Money
+     */
+    public function balance()
+    {
+        //
+    }
 }

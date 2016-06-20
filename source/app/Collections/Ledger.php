@@ -2,7 +2,7 @@
 
 namespace App\Collections;
 
-use Illuminate\Support\Collection;
+use App\Collections\Abstracts\Register;
 
 /**
  * A ledger is the book of final entry.
@@ -13,7 +13,15 @@ use Illuminate\Support\Collection;
  * all of this kind of automatically with how the relationships
  * are set up, we'll just consider this a collection of accounts.
  */
-class Ledger extends Collection
+class Ledger extends Register
 {
-    //
+    /**
+     * Get the balance of this register
+     *
+     * @return \App\Money
+     */
+    public function balance()
+    {
+        //
+    }
 }

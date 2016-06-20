@@ -2,7 +2,7 @@
 
 namespace App\Collections;
 
-use Illuminate\Support\Collection;
+use App\Collections\Abstracts\Register;
 
 /**
  * I don't really know what to call this.
@@ -14,7 +14,15 @@ use Illuminate\Support\Collection;
  * That's how I came up with the word line. Yay. What is a collection
  * of lines called? Splits. Yep. Brilliant, I know. I know... I know.
  */
-class Splits extends Collection
+class Splits extends Register
 {
-    //
+    /**
+     * Get the balance of this register
+     *
+     * @return \App\Money
+     */
+    public function balance()
+    {
+        //
+    }
 }

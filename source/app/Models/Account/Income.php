@@ -10,15 +10,5 @@ use App\Models\Account\Abstracts\CreditAccount;
  */
 class Income extends CreditAccount
 {
-    /**
-     * Create a new Income instance
-     *
-     * @param  array  $attributes
-     * @return void
-     */
-    public function __construct(array $attributes = [])
-    {
-        $attributes['type'] = 'income';
-        parent::__construct($attributes);
-    }
+    protected static $singleTableType = 'income';
 }

@@ -9,15 +9,5 @@ use App\Models\Account\Abstracts\CreditAccount;
  */
 class Liability extends CreditAccount
 {
-    /**
-     * Create a new Liability instance
-     *
-     * @param  array  $attributes
-     * @return void
-     */
-    public function __construct(array $attributes = [])
-    {
-        $attributes['type'] = 'liability';
-        parent::__construct($attributes);
-    }
+    protected static $singleTableType = 'liability';
 }

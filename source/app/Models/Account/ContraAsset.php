@@ -10,15 +10,5 @@ use App\Models\Account\Abstracts\CreditAccount;
  */
 class ContraAsset extends CreditAccount
 {
-    /**
-     * Create a new ContraAsset instance
-     *
-     * @param  array  $attributes
-     * @return void
-     */
-    public function __construct(array $attributes = [])
-    {
-        $attributes['type'] = 'contra_asset';
-        parent::__construct($attributes);
-    }
+    protected static $singleTableType = 'contra_asset';
 }

@@ -10,15 +10,5 @@ use App\Models\Account\Abstracts\DebitAccount;
  */
 class Asset extends DebitAccount
 {
-    /**
-     * Create a new Asset instance
-     *
-     * @param  array  $attributes
-     * @return void
-     */
-    public function __construct(array $attributes = [])
-    {
-        $attributes['type'] = 'asset';
-        parent::__construct($attributes);
-    }
+    protected static $singleTableType = 'asset';
 }

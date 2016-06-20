@@ -12,15 +12,5 @@ use App\Models\Account\Abstracts\CreditAccount;
  */
 class Equity extends CreditAccount
 {
-    /**
-     * Create a new Equity instance
-     *
-     * @param  array  $attributes
-     * @return void
-     */
-    public function __construct(array $attributes = [])
-    {
-        $attributes['type'] = 'equity';
-        parent::__construct($attributes);
-    }
+    protected static $singleTableType = 'equity';
 }
