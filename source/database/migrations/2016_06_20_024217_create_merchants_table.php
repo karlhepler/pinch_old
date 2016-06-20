@@ -27,6 +27,6 @@ class CreateMerchantsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('merchant');
+        Schema::drop('merchants');
     }
 }

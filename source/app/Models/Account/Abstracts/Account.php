@@ -7,6 +7,7 @@ use App\Models\Account\Asset;
 use App\Models\Account\Equity;
 use App\Models\Account\Income;
 use App\Models\Account\Expense;
+use App\Traits\CustomCollection;
 use App\Models\Account\Liability;
 use App\Traits\SingleTableInheritance;
 use Illuminate\Database\Eloquent\Model;
@@ -24,6 +25,7 @@ abstract class Account extends Model
         SingleTableInheritance;
 
     protected $table = 'accounts';
+    protected $fillable = ['name', 'type'];
     protected $customCollectionType = Ledger::class;
     protected $inheritanceMap = [
         'asset'        => Asset::class,

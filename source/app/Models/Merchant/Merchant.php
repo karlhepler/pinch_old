@@ -13,4 +13,6 @@ use App\Models\Merchant\Traits\Relationships;
 class Merchant extends Model
 {
     use Relationships;
+
+    protected $fillable = ['name'];
 }

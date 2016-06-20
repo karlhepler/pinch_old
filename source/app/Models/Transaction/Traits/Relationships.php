@@ -2,6 +2,7 @@
 
 namespace App\Models\Transaction\Traits;
 
+use App\Models\Merchant\Merchant;
 use App\Models\Split\Abstracts\Split;
 
 trait Relationships
@@ -23,6 +24,6 @@ trait Relationships
      */
     public function merchant()
     {
-        return $this->belongsTo(Mercant::class);
+        return $this->belongsTo(Merchant::class);
     }
 }

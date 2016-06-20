@@ -27,6 +27,7 @@ abstract class Split extends Model
         SingleTableInheritance;
 
     protected $table = 'splits';
+    protected $fillable = ['type', 'amount', 'memo', 'account_id', 'transaction_id'];
     protected $customCollectionType = Splits::class;
     protected $inheritanceMap = [
         'credit' => Credit::class,
