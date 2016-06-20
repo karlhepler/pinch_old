@@ -4,6 +4,7 @@ namespace App\Models\Transaction;
 
 use App\Collections\Journal;
 use App\Traits\CustomCollection;
+use App\Factories\TransactionRecord;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Transaction\Traits\Relationships;
 
@@ -24,4 +25,15 @@ class Transaction extends Model
     protected $fillable = ['transacted_at', 'merchant_id', 'description'];
     protected $dates = ['transacted_at'];
     protected $customCollectionType = Journal::class;
+
+    /**
+     * Record a new transaction in the journal & ledger
+     *
+     * @param  string $description
+     * @return \App\Factories\TransactionRecord
+     */
+    public static function record($description = '')
+    {
+        return new TransactionRecord($description);
+    }
 }
