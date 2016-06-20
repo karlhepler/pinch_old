@@ -2,7 +2,7 @@
 
 namespace App\Models\Account\Traits;
 
-use App\Models\Split\Abstracts\Split;
+use App\Models\Split\Base\Split;
 
 trait Relationships
 {

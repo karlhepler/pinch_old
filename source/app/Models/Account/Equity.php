@@ -2,7 +2,7 @@
 
 namespace App\Models\Account;
 
-use App\Models\Account\Abstracts\CreditAccount;
+use App\Models\Account\Base\CreditAccount;
 
 /**
  * Equity is the net amount of funds invested in a business

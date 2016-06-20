@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Account\Abstracts;
+namespace App\Models\Account\Base;
 
 /**
  * A debit account's balance DECREASES when it is CREDITED

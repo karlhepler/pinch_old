@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Split\Abstracts;
+namespace App\Models\Split\Base;
 
 use App\Collections\Splits;
 use App\Models\Split\Debit;
@@ -20,7 +20,7 @@ use Nanigans\SingleTableInheritance\SingleTableInheritanceTrait;
  * wind of it, figure out if it is an asset, and recommend a
  * sinking fund for it.
  */
-abstract class Split extends Model
+class Split extends Model
 {
     use Relationships,
         CustomCollection,

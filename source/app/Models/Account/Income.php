@@ -2,7 +2,7 @@
 
 namespace App\Models\Account;
 
-use App\Models\Account\Abstracts\CreditAccount;
+use App\Models\Account\Base\CreditAccount;
 
 /**
  * Revenue is an increase in assets or decrease in liabilities

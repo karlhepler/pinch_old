@@ -3,7 +3,7 @@
 namespace App\Models\Split\Traits;
 
 use App\Models\Transaction\Transaction;
-use App\Models\Account\Abstracts\Account;
+use App\Models\Account\Base\Account;
 
 trait Relationships
 {

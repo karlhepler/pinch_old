@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Account\Abstracts;
+namespace App\Models\Account\Base;
 
 /**
  * A credit account's balance INCREASES when it is CREDITED

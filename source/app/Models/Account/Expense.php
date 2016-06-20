@@ -2,7 +2,7 @@
 
 namespace App\Models\Account;
 
-use App\Models\Account\Abstracts\DebitAccount;
+use App\Models\Account\Base\DebitAccount;
 
 /**
  * An expense is an item of economic value that is expected to

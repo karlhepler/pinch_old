@@ -2,7 +2,7 @@
 
 namespace App\Models\Split;
 
-use App\Models\Split\Abstracts\Split;
+use App\Models\Split\Base\Split;
 
 /**
  * A split of itemization can debit an account.

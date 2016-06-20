@@ -2,7 +2,7 @@
 
 namespace App\Models\Account;
 
-use App\Models\Account\Abstracts\CreditAccount;
+use App\Models\Account\Base\CreditAccount;
 
 /**
  * A contra asset is a negative asset account that offsets

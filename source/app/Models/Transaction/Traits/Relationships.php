@@ -3,7 +3,7 @@
 namespace App\Models\Transaction\Traits;
 
 use App\Models\Merchant\Merchant;
-use App\Models\Split\Abstracts\Split;
+use App\Models\Split\Base\Split;
 
 trait Relationships
 {

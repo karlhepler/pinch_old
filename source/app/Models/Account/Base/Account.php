@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Account\Abstracts;
+namespace App\Models\Account\Base;
 
 use App\Collections\Ledger;
 use App\Models\Account\Asset;
@@ -18,7 +18,7 @@ use Nanigans\SingleTableInheritance\SingleTableInheritanceTrait;
  * It allowed for single table inheritance, and uses the custom
  * collection type "Ledger".
  */
-abstract class Account extends Model
+class Account extends Model
 {
     use Relationships,
         CustomCollection,
