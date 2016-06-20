@@ -3,8 +3,12 @@
 namespace App\Models\Account;
 
 use App\Models\Account\Abstracts\CreditAccount;
+use App\Models\Account\Contracts\BalanceSheetAccount;
 
-class Liability extends CreditAccount
+/**
+ * A liability is a legally binding obligation payable to another entity.
+ */
+class Liability extends CreditAccount implements BalanceSheetAccount
 {
     //
 }
