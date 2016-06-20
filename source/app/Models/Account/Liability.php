@@ -10,5 +10,15 @@ use App\Models\Account\Contracts\BalanceSheetAccount;
  */
 class Liability extends CreditAccount implements BalanceSheetAccount
 {
-    //
+    /**
+     * Create a new Liability instance
+     *
+     * @param  array  $attributes
+     * @return void
+     */
+    public function __construct(array $attributes = [])
+    {
+        $attributes['type'] = 'liability';
+        parent::__construct($attributes);
+    }
 }

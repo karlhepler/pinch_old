@@ -11,5 +11,15 @@ use App\Models\Account\Contracts\IncomeStatementAccount;
  */
 class Expense extends DebitAccount implements IncomeStatementAccount
 {
-    //
+    /**
+     * Create a new Expense instance
+     *
+     * @param  array  $attributes
+     * @return void
+     */
+    public function __construct(array $attributes = [])
+    {
+        $attributes['type'] = 'expense';
+        parent::__construct($attributes);
+    }
 }

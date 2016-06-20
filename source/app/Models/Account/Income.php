@@ -11,5 +11,15 @@ use App\Models\Account\Contracts\IncomeStatementAccount;
  */
 class Income extends CreditAccount implements IncomeStatementAccount
 {
-    //
+    /**
+     * Create a new Income instance
+     *
+     * @param  array  $attributes
+     * @return void
+     */
+    public function __construct(array $attributes = [])
+    {
+        $attributes['type'] = 'income';
+        parent::__construct($attributes);
+    }
 }

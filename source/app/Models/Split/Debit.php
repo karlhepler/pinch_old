@@ -11,5 +11,15 @@ use App\Models\Split\Abstracts\Split;
  */
 class Debit extends Split
 {
-    //
+    /**
+     * Create a new Debit instance
+     *
+     * @param  array  $attributes
+     * @return void
+     */
+    public function __construct(array $attributes = [])
+    {
+        $attributes['type'] = 'debit';
+        parent::__construct($attributes);
+    }
 }

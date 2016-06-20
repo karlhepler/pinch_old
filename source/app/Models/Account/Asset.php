@@ -11,5 +11,15 @@ use App\Models\Account\Contracts\BalanceSheetAccount;
  */
 class Asset extends DebitAccount implements BalanceSheetAccount
 {
-    //
+    /**
+     * Create a new Asset instance
+     *
+     * @param  array  $attributes
+     * @return void
+     */
+    public function __construct(array $attributes = [])
+    {
+        $attributes['type'] = 'asset';
+        parent::__construct($attributes);
+    }
 }
