@@ -3,7 +3,6 @@
 namespace App\Models\Account;
 
 use App\Models\Account\Abstracts\CreditAccount;
-use App\Models\Account\Contracts\BalanceSheetAccount;
 
 /**
  * Equity is the net amount of funds invested in a business
@@ -11,7 +10,7 @@ use App\Models\Account\Contracts\BalanceSheetAccount;
  * calculated as the difference between the total of all
  * recorded assets and liabilities on an entity's balance sheet.
  */
-class Equity extends CreditAccount implements BalanceSheetAccount
+class Equity extends CreditAccount
 {
     /**
      * Create a new Equity instance
