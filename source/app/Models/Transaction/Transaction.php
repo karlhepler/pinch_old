@@ -21,6 +21,7 @@ class Transaction extends Model
     use Relationships,
         CustomCollection;
 
-    protected $fillable = ['merchant_id', 'description'];
+    protected $fillable = ['transacted_at', 'merchant_id', 'description'];
+    protected $dates = ['transacted_at'];
     protected $customCollectionType = Journal::class;
 }
