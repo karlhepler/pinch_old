@@ -12,9 +12,9 @@ use Illuminate\Support\Collection;
  * You then take this exact same information and write it
  * line-by-line in the ledger under the appropriate accounts.
  * That's how I came up with the word line. Yay. What is a collection
- * of lines called? Lines. Yep. Brilliant, I know. I know... I know.
+ * of lines called? Splits. Yep. Brilliant, I know. I know... I know.
  */
-class Lines extends Collection
+class Splits extends Collection
 {
     //
 }

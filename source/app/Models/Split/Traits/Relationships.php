@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Line\Traits;
+namespace App\Models\Split\Traits;
 
 trait Relationships
 {
