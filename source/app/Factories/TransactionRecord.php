@@ -2,6 +2,7 @@
 
 namespace App\Factories;
 
+use App\Collections\Splits;
 use App\Models\Merchant\Merchant;
 
 /**
@@ -10,12 +11,12 @@ use App\Models\Merchant\Merchant;
 class TransactionRecord
 {
     /**
-     * Describe what this is a transasction of
+     * Add an associated description to the transaction
      *
      * @param  string $description
      * @return $this
      */
-    public function of($description)
+    public function describedBy($description)
     {
         //
     }
@@ -43,25 +44,12 @@ class TransactionRecord
     }
 
     /**
-     * An array of credits to accounts for this transaction
-     * ex: ['amount' => 12300, 'account' => <\App\Models\Account\Base\Account>$account]
+     * A collection of splits for this transaction
      *
-     * @param  array  $credits
+     * @param  Splits $splits
      * @return $this
      */
-    public function havingCredits(array $credits)
-    {
-        //
-    }
-
-    /**
-     * An array of debits to accounts for this transaction
-     * ex: ['amount' => 12300, 'account' => <\App\Models\Account\Base\Account>$account]
-     *
-     * @param  array  $debits
-     * @return $this
-     */
-    public function havingDebits(array $debits)
+    public function havingSplits(Splits $splits)
     {
         //
     }

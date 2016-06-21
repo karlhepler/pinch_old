@@ -11,10 +11,18 @@ class TransactionTest extends TestCase
      */
     function it_can_record_a_new_transaction()
     {
-        Transaction::record($description)
+        $merchant = Merchant::find(1);
+        $datetime = date();
+        $description = 'My great trip to Kroger';
+
+        $splits = new Splits;
+        $splits->credit($account, $money);
+        $splits->debit($account, $money);
+
+        Transaction::record()
             ->with($merchant)
             ->on($datetime)
-            ->havingCredits($credits)
-            ->andHavingDebits($debits);
+            ->describedBy($description)
+            ->andHavingSplits($splits);
     }
 }
