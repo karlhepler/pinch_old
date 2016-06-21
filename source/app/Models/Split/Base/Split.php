@@ -6,8 +6,10 @@ use App\Collections\Splits;
 use App\Models\Split\Debit;
 use App\Models\Split\Credit;
 use App\Traits\CustomCollection;
+use App\Models\Split\Traits\Bootstrap;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Split\Traits\Relationships;
+use App\Models\Split\Traits\AttributeModifiers;
 use Nanigans\SingleTableInheritance\SingleTableInheritanceTrait;
 
 /**
@@ -22,8 +24,10 @@ use Nanigans\SingleTableInheritance\SingleTableInheritanceTrait;
  */
 class Split extends Model
 {
-    use Relationships,
+    use Bootstrap,
+        Relationships,
         CustomCollection,
+        AttributeModifiers,
         SingleTableInheritanceTrait;
 
     protected $table = 'splits';

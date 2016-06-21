@@ -30,4 +30,17 @@ class Money
     {
         return $this->value;
     }
+
+    /**
+     * Return the sum of this and other Money
+     *
+     * @param  \App\Money  $money
+     * @return \App\Money
+     */
+    public function sum(Money $money)
+    {
+        return new Money(
+            $this->value() + $money->value()
+        );
+    }
 }

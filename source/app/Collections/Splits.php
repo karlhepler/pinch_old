@@ -26,8 +26,8 @@ class Splits extends Register
      */
     public function balance()
     {
-        return $this->reduce(function($carry, $current) {
-            return new Money($carry->value() + $current->value());
+        return $this->reduce(function(Money $carry, Split $current) {
+            return $carry->sum($current->amount);
         }, new Money);
     }
 
