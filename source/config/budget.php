@@ -1,6 +1,20 @@
 <?php
 
 return [
+
+    'account_types' => [
+        'asset',
+        'contra_asset',
+        'liability',
+        'equity',
+        'income',
+        'expense',
+    ],
+
+    'split_types' => [
+        'credit',
+        'debit',
+    ],
     
     'balance_sheet_accounts' => [
         App\Models\Account\Asset::class,

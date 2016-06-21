@@ -37,14 +37,16 @@ class Splits extends Register
      *
      * @param  \App\Models\Account\Base\Account $account
      * @param  \App\Money   $amount
+     * @param  string $memo
      * @return \App\Models\Split\Credit
      */
-    public function credit(Account $account, Money $amount)
+    public function credit(Account $account, Money $amount, $memo = '')
     {
         // Create the credit
         $credit = new Credit([
             'account_id' => $account->id,
-            'amount' => $amount->value()
+            'amount' => $amount->value(),
+            'memo' => $memo
         ]);
 
         // Push it in
@@ -60,14 +62,16 @@ class Splits extends Register
      *
      * @param  \App\Models\Account\Base\Account $account
      * @param  \App\Money   $amount
+     * @param  string $memo
      * @return \App\Models\Split\Debit
      */
-    public function debit(Account $account, Money $amount)
+    public function debit(Account $account, Money $amount, $memo = '')
     {
         // Create the debit
         $debit = new Debit([
             'account_id' => $account->id,
-            'amount' => $amount->value()
+            'amount' => $amount->value(),
+            'memo' => $memo
         ]);
 
         // Push it in

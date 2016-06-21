@@ -17,7 +17,7 @@ class CreateAccountsTable extends Migration
             $table->timestamps();
 
             $table->string('name')->index();
-            $table->enum('type', ['asset', 'contra_asset', 'liability', 'equity', 'income', 'expense'])->index();
+            $table->enum('type', config('budget.account_types'))->index();
             $table->integer('balance')->default(0);
         });
     }

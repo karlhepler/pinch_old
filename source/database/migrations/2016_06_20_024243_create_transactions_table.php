@@ -19,7 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->unsignedInteger('merchant_id')->nullable();
             $table->foreign('merchant_id')->references('id')->on('merchants');
 
-            $table->timestamp('transacted_at');
+            $table->date('transacted_at');
 
             $table->text('description')->default('');
         });
