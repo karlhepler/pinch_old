@@ -90,7 +90,7 @@ class TransactionRecord
     /**
      * A collection of splits for this transaction
      *
-     * @param  Splits $splits
+     * @param  \App\Collections\Splits $splits
      * @return $this
      */
     public function havingSplits(Splits $splits)
