@@ -34,6 +34,6 @@ class Transaction extends Model
      */
     public static function record($description = '')
     {
-        return new TransactionRecord($description);
+        return new TransactionRecord;
     }
 }
