@@ -40,10 +40,8 @@ class TransactionRecord
      */
     public function describedBy($description)
     {
-        // Set
         $this->attributes['description'] = $description;
 
-        // Return
         return $this;
     }
 
@@ -55,15 +53,12 @@ class TransactionRecord
      */
     public function with($merchant)
     {
-        // Format
         $merchant = $merchant instanceof Merchant
             ? $merchant->id
             : $merchant;
 
-        // Set
         $this->attributes['merchant_id'] = $merchant;
 
-        // Return
         return $this;
     }
 
@@ -75,15 +70,12 @@ class TransactionRecord
      */
     public function on($transactedAt)
     {
-        // Format
         $transactedAt = $transactedAt instanceof \DateTime
             ? Carbon::instance($transactedAt)
             : Carbon::createFromFormat('Y-m-d', $transactedAt);
 
-        // Set
         $this->attributes['transacted_at'] = $transactedAt;
 
-        // Return
         return $this;
     }
 
@@ -95,10 +87,8 @@ class TransactionRecord
      */
     public function havingSplits(Splits $splits)
     {
-        // Set
         $this->splits = $splits;
 
-        // Return
         return $this;
     }
 
@@ -109,15 +99,12 @@ class TransactionRecord
      */
     public function create()
     {
-        // Create the transaction
         $transaction = Transaction::create($this->attributes);
 
-        // Add the splits if there are any
         if ( $this->splitsWereSet() ) {
             $transaction->splits()->saveMany($this->splits->all());
         }
 
-        // Return the transaction
         return $transaction;
     }
 
@@ -137,15 +124,12 @@ class TransactionRecord
      */
     public function __call($methodName, array $args)
     {
-        // Make sure this is a valid final method
         if (! $this->isValidFinalMethod($methodName) ) {
             throw new \BadMethodCallException($methodName);
         }
 
-        // Call it
         call_user_func_array([$this, $this->finalMethodName($methodName)], $args);
 
-        // Create the transaction & return it
         return $this->create();
     }
     

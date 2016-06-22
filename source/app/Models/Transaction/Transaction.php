@@ -29,10 +29,9 @@ class Transaction extends Model
     /**
      * Record a new transaction in the journal & ledger
      *
-     * @param  string $description
      * @return \App\Factories\TransactionRecord
      */
-    public static function record($description = '')
+    public static function record()
     {
         return new TransactionRecord;
     }
