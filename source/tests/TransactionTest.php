@@ -18,8 +18,8 @@ class TransactionTest extends TestCase
     function it_can_record_a_new_transaction()
     {
         $transaction = Transaction::record()
-            ->with(factory(Merchant::class)->create()->id)
             ->on($this->faker()->date())
+            ->with(factory(Merchant::class)->create()->id)
             ->describedBy($this->faker()->sentence)
             ->andHavingSplits([
                 ['type' => $this->faker()->randomElement(array_keys(config('budget.split_types'))), 'amount' => $this->faker()->randomNumber, 'account_id' => factory(Account::class)->create()->id, 'memo' => $this->faker()->sentence],
@@ -27,7 +27,5 @@ class TransactionTest extends TestCase
                 ['type' => $this->faker()->randomElement(array_keys(config('budget.split_types'))), 'amount' => $this->faker()->randomNumber, 'account_id' => factory(Account::class)->create()->id, 'memo' => $this->faker()->sentence],
                 ['type' => $this->faker()->randomElement(array_keys(config('budget.split_types'))), 'amount' => $this->faker()->randomNumber, 'account_id' => factory(Account::class)->create()->id, 'memo' => $this->faker()->sentence],
             ]);
-
-        dd( \App\Models\Split\Credit::all()->balance() );
     }
 }

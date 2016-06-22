@@ -34,23 +34,6 @@ class TransactionRecord
     ////////////////////////
 
     /**
-     * State with whom this transaction is with
-     *
-     * @param  integer|\App\Models\Merchant\Merchant $merchant
-     * @return $this
-     */
-    public function with($merchant)
-    {
-        $merchant = $merchant instanceof Merchant
-            ? $merchant->id
-            : $merchant;
-
-        $this->attributes['merchant_id'] = $merchant;
-
-        return $this;
-    }
-
-    /**
      * When this transaction took place
      *
      * @param  string|\DateTime $transactedAt
@@ -63,6 +46,23 @@ class TransactionRecord
             : Carbon::createFromFormat('Y-m-d', $transactedAt);
 
         $this->attributes['transacted_at'] = $transactedAt;
+
+        return $this;
+    }
+
+    /**
+     * State with whom this transaction is with
+     *
+     * @param  integer|\App\Models\Merchant\Merchant $merchant
+     * @return $this
+     */
+    public function with($merchant)
+    {
+        $merchant = $merchant instanceof Merchant
+            ? $merchant->id
+            : $merchant;
+
+        $this->attributes['merchant_id'] = $merchant;
 
         return $this;
     }
