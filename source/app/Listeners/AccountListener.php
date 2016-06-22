@@ -17,7 +17,7 @@ class AccountListener extends EventSubscriber
      * @param  Event  $event
      * @return void
      */
-    public function onSaving(Event $event)
+    public function onAccountSaving(Event $event)
     {
         // 
     }

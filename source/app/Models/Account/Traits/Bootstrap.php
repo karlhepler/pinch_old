@@ -3,8 +3,8 @@
 namespace App\Models\Account\Traits;
 
 use Event;
-use App\Events\Account\Saving;
 use App\Models\Account\Base\Account;
+use App\Events\Account\AccountSaving;
 
 trait Bootstrap
 {
@@ -19,7 +19,7 @@ trait Bootstrap
          * The Account is about to save
          */
         static::saving(function(Account $account) {
-            Event::fire(new Saving($account));
+            Event::fire(new AccountSaving($account));
         });
     }
 }

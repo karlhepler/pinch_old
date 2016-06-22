@@ -1,31 +1,31 @@
 <?php
 
-namespace App\Events\Account;
+namespace App\Events\Split;
 
 use App\Events\Event;
-use App\Models\Account\Base\Account;
+use App\Models\Split\Base\Split;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class Saving extends Event
+class SplitCreated extends Event
 {
     use SerializesModels;
 
     /**
-     * The account that is about to be saved
+     * The split that was just created
      *
-     * @var \App\Models\Account\Base\Account
+     * @var \App\Models\Split\Base\Split
      */
-    public $account;
+    public $split;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Account $account)
+    public function __construct(Split $split)
     {
-        $this->account = $account;
+        $this->split = $split;
     }
 
     /**

@@ -3,10 +3,10 @@
 namespace App\Models\Split\Traits;
 
 use Event;
-use App\Events\Split\Created;
-use App\Events\Split\Updated;
-use App\Events\Split\Deleted;
 use App\Models\Split\Base\Split;
+use App\Events\Split\SplitCreated;
+use App\Events\Split\SplitUpdated;
+use App\Events\Split\SplitDeleted;
 
 trait Bootstrap
 {
@@ -21,21 +21,21 @@ trait Bootstrap
          * The Split was just created
          */
         static::created(function(Split $split) {
-            Event::fire(new Created($split));
+            Event::fire(new SplitCreated($split));
         });
 
         /**
          * The Split was just updated
          */
         static::updated(function(Split $split) {
-            Event::fire(new Updated($split));
+            Event::fire(new SplitUpdated($split));
         });
 
         /**
          * The Split was just destroyed
          */
         static::deleted(function(Split $split) {
-            Event::fire(new Deleted($split));
+            Event::fire(new SplitDeleted($split));
         });
     }
 }

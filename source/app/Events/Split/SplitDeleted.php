@@ -7,7 +7,7 @@ use App\Models\Split\Base\Split;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class Deleted extends Event
+class SplitDeleted extends Event
 {
     use SerializesModels;
 
