@@ -22,4 +22,14 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         return $app;
     }
+
+    /**
+     * Get faker
+     *
+     * @return Faker\Generator
+     */
+    protected function faker()
+    {
+        return app(Faker\Generator::class);
+    }
 }

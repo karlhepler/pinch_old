@@ -7,33 +7,33 @@ use App\Models\Account\Asset;
 use App\Models\Account\Equity;
 use App\Models\Account\Income;
 use App\Models\Account\Expense;
-use App\Traits\CustomCollection;
+use App\Helpers\CustomCollection;
 use App\Models\Account\Liability;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Account\ContraAsset;
 use App\Models\Account\Traits\Relationships;
-use Nanigans\SingleTableInheritance\SingleTableInheritanceTrait;
+use App\Helpers\SingleTableInheritanceParent;
 
 /**
  * This is the base account class from which all accounts derive.
  * It allowed for single table inheritance, and uses the custom
  * collection type "Ledger".
  */
-class Account extends Model
+class Account extends SingleTableInheritanceParent
 {
     use Relationships,
-        CustomCollection,
-        SingleTableInheritanceTrait;
+        CustomCollection;
 
     protected $table = 'accounts';
     protected $fillable = ['name', 'type'];
     protected $customCollectionType = Ledger::class;
-    protected static $singleTableTypeField = 'type';
-    protected static $singleTableSubclasses = [
-        Asset::class,
-        ContraAsset::class,
-        Equity::class,
-        Expense::class,
-        Income::class,
-        Liability::class,
-    ];
+
+    /**
+     * Get the single table inheritance class map
+     *
+     * @return array
+     */
+    protected function singleTableInheritanceClassMap()
+    {
+        return config('budget.account_types');
+    }
 }

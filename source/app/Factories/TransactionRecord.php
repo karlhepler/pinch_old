@@ -3,6 +3,7 @@
 namespace App\Factories;
 
 use Carbon\Carbon;
+use BadMethodCallException;
 use App\Collections\Splits;
 use App\Models\Merchant\Merchant;
 use App\Models\Transaction\Transaction;
@@ -31,19 +32,6 @@ class TransactionRecord
     ////////////////////////
     // PUBLIC API METHODS //
     ////////////////////////
-
-    /**
-     * Add an associated description to the transaction
-     *
-     * @param  string $description
-     * @return $this
-     */
-    public function describedBy($description)
-    {
-        $this->attributes['description'] = $description;
-
-        return $this;
-    }
 
     /**
      * State with whom this transaction is with
@@ -80,12 +68,25 @@ class TransactionRecord
     }
 
     /**
-     * A collection of splits for this transaction
+     * Add an associated description to the transaction
      *
-     * @param  \App\Collections\Splits $splits
+     * @param  string $description
      * @return $this
      */
-    public function havingSplits(Splits $splits)
+    public function describedBy($description)
+    {
+        $this->attributes['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * A collection of splits for this transaction
+     *
+     * @param  array $splits
+     * @return $this
+     */
+    public function havingSplits(array $splits)
     {
         $this->splits = $splits;
 
@@ -102,7 +103,7 @@ class TransactionRecord
         $transaction = Transaction::create($this->attributes);
 
         if ( $this->splitsWereSet() ) {
-            $transaction->splits()->saveMany($this->splits->all());
+            $transaction->splits()->createMany($this->splits);
         }
 
         return $transaction;
@@ -125,7 +126,7 @@ class TransactionRecord
     public function __call($methodName, array $args)
     {
         if (! $this->isValidFinalMethod($methodName) ) {
-            throw new \BadMethodCallException($methodName);
+            throw new BadMethodCallException($methodName);
         }
 
         call_user_func_array([$this, $this->finalMethodName($methodName)], $args);
@@ -177,13 +178,13 @@ class TransactionRecord
      */
     protected function finalMethodName($methodName)
     {
-        $result = preg_match("/^add(.+)$/", $methodName, $matches);
+        $result = preg_match("/^and(.+)$/", $methodName, $matches);
 
         if ( $result !== 1 ) {
             return false;
         }
 
-        return $matches[1];
+        return lcfirst($matches[1]);
     }
 
     /**

@@ -10,5 +10,5 @@ use App\Models\Account\Base\DebitAccount;
  */
 class Expense extends DebitAccount
 {
-    protected static $singleTableType = 'expense';
+    //
 }

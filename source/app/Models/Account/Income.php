@@ -10,5 +10,5 @@ use App\Models\Account\Base\CreditAccount;
  */
 class Income extends CreditAccount
 {
-    protected static $singleTableType = 'income';
+    //
 }

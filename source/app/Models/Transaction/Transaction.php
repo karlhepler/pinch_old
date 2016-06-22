@@ -3,7 +3,7 @@
 namespace App\Models\Transaction;
 
 use App\Collections\Journal;
-use App\Traits\CustomCollection;
+use App\Helpers\CustomCollection;
 use App\Factories\TransactionRecord;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Transaction\Traits\Relationships;

@@ -3,17 +3,17 @@
 return [
 
     'account_types' => [
-        'asset',
-        'contra_asset',
-        'liability',
-        'equity',
-        'income',
-        'expense',
+        'asset'        => App\Models\Account\Asset::class,
+        'contra_asset' => App\Models\Account\ContraAsset::class,
+        'equity'       => App\Models\Account\Equity::class,
+        'expense'      => App\Models\Account\Expense::class,
+        'income'       => App\Models\Account\Income::class,
+        'liability'    => App\Models\Account\Liability::class,
     ],
 
     'split_types' => [
-        'credit',
-        'debit',
+        'credit' => App\Models\Split\Credit::class,
+        'debit'  => App\Models\Split\Debit::class,
     ],
     
     'balance_sheet_accounts' => [

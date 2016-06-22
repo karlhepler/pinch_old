@@ -3,7 +3,9 @@
 namespace App\Collections;
 
 use App\Money;
+use App\Models\Split\Debit;
 use App\Models\Split\Credit;
+use App\Models\Split\Base\Split;
 use App\Models\Account\Base\Account;
 use App\Collections\Abstracts\Register;
 
@@ -27,7 +29,9 @@ class Splits extends Register
     public function balance()
     {
         return $this->reduce(function(Money $carry, Split $current) {
-            return $carry->sum($current->amount);
+            return $current instanceof Debit
+                ? $carry->sum($current->amount)
+                : $carry->diff($current->amount);
         }, new Money);
     }
 }

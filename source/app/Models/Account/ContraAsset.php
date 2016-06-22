@@ -10,5 +10,5 @@ use App\Models\Account\Base\CreditAccount;
  */
 class ContraAsset extends CreditAccount
 {
-    protected static $singleTableType = 'contra_asset';
+    //
 }

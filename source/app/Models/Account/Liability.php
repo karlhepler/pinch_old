@@ -9,5 +9,5 @@ use App\Models\Account\Base\CreditAccount;
  */
 class Liability extends CreditAccount
 {
-    protected static $singleTableType = 'liability';
+    //
 }

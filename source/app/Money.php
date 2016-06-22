@@ -18,7 +18,7 @@ class Money
      */
     public function __construct($value = 0)
     {
-        $this->value = $value;
+        $this->value = intval($value);
     }
 
     /**
@@ -41,6 +41,19 @@ class Money
     {
         return new Money(
             $this->value() + $money->value()
+        );
+    }
+
+    /**
+     * Return the difference of this and other Money
+     *
+     * @param  \App\Money  $money
+     * @return \App\Money
+     */
+    public function diff(Money $money)
+    {
+        return new Money(
+            $this->value() - $money->value()
         );
     }
 }

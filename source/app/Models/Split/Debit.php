@@ -11,5 +11,5 @@ use App\Models\Split\Base\Split;
  */
 class Debit extends Split
 {
-    protected static $singleTableType = 'debit';
+    //
 }

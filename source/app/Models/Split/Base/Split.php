@@ -5,12 +5,11 @@ namespace App\Models\Split\Base;
 use App\Collections\Splits;
 use App\Models\Split\Debit;
 use App\Models\Split\Credit;
-use App\Traits\CustomCollection;
+use App\Helpers\CustomCollection;
 use App\Models\Split\Traits\Bootstrap;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Split\Traits\Relationships;
+use App\Helpers\SingleTableInheritanceParent;
 use App\Models\Split\Traits\AttributeModifiers;
-use Nanigans\SingleTableInheritance\SingleTableInheritanceTrait;
 
 /**
  * A split is a single split of itemization of an account
@@ -22,19 +21,24 @@ use Nanigans\SingleTableInheritance\SingleTableInheritanceTrait;
  * wind of it, figure out if it is an asset, and recommend a
  * sinking fund for it.
  */
-class Split extends Model
+class Split extends SingleTableInheritanceParent
 {
     use Bootstrap,
         Relationships,
         CustomCollection,
-        AttributeModifiers,
-        SingleTableInheritanceTrait;
+        AttributeModifiers;
 
     protected $table = 'splits';
     protected $fillable = ['type', 'amount', 'memo', 'account_id', 'transaction_id'];
     protected $customCollectionType = Splits::class;
-    protected static $singleTableSubclasses = [
-        Credit::class,
-        Debit::class,
-    ];
+
+    /**
+     * Get the single table inheritance class map
+     *
+     * @return array
+     */
+    protected function singleTableInheritanceClassMap()
+    {
+        return config('budget.split_types');
+    }
 }

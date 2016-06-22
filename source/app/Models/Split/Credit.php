@@ -11,5 +11,5 @@ use App\Models\Split\Base\Split;
  */
 class Credit extends Split
 {
-    protected static $singleTableType = 'credit';
+    //
 }
