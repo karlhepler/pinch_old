@@ -3,6 +3,9 @@
 namespace App\Models\Split\Traits;
 
 use Event;
+use App\Events\SplitCreated;
+use App\Events\SplitUpdated;
+use App\Models\Split\Base\Split;
 
 trait Bootstrap
 {
@@ -11,7 +14,7 @@ trait Bootstrap
      *
      * @return void
      */
-    public static function bootModelEvents()
+    public static function bootBootstrap()
     {
         /**
          * The Split was just created
