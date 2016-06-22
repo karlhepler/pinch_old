@@ -2,6 +2,8 @@
 
 namespace App\Models\Split\Traits;
 
+use Event;
+
 trait Bootstrap
 {
     /**
@@ -12,10 +14,17 @@ trait Bootstrap
     public static function bootModelEvents()
     {
         /**
-         * The Split was just saved
+         * The Split was just created
          */
-        static::saved(function(Split $split) {
-            // Fire an event!
+        static::created(function(Split $split) {
+            Event::fire(new SplitCreated($split));
+        });
+
+        /**
+         * The Split was just updated
+         */
+        static::updated(function(Split $split) {
+            Event::fire(new SplitUpdated($split));
         });
     }
 }
