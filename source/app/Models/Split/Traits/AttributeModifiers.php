@@ -2,7 +2,7 @@
 
 namespace App\Models\Split\Traits;
 
-use App\Money;
+use App\Helpers\Money;
 
 trait AttributeModifiers
 {
@@ -10,7 +10,7 @@ trait AttributeModifiers
      * Get the amount as money
      *
      * @param  integer $amount
-     * @return \App\Money
+     * @return \App\Helpers\Money
      */
     public function getAmountAttribute($amount)
     {

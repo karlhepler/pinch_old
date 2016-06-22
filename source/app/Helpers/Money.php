@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Helpers;
 
 class Money
 {
@@ -34,8 +34,8 @@ class Money
     /**
      * Return the sum of this and other Money
      *
-     * @param  \App\Money  $money
-     * @return \App\Money
+     * @param  \App\Helpers\Money  $money
+     * @return \App\Helpers\Money
      */
     public function sum(Money $money)
     {
@@ -47,8 +47,8 @@ class Money
     /**
      * Return the difference of this and other Money
      *
-     * @param  \App\Money  $money
-     * @return \App\Money
+     * @param  \App\Helpers\Money  $money
+     * @return \App\Helpers\Money
      */
     public function diff(Money $money)
     {

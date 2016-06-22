@@ -2,7 +2,7 @@
 
 namespace App\Collections;
 
-use App\Money;
+use App\Helpers\Money;
 use App\Models\Split\Debit;
 use App\Models\Split\Credit;
 use App\Models\Split\Base\Split;
@@ -24,7 +24,7 @@ class Splits extends Register
     /**
      * Get the balance of this register
      *
-     * @return \App\Money
+     * @return \App\Helpers\Money
      */
     public function balance()
     {

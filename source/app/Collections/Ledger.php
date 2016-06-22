@@ -18,7 +18,7 @@ class Ledger extends Register
     /**
      * Get the balance of this register
      *
-     * @return \App\Money
+     * @return \App\Helpers\Money
      */
     public function balance()
     {
