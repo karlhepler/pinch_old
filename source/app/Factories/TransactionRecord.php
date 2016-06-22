@@ -8,7 +8,7 @@ use App\Models\Merchant\Merchant;
 use App\Models\Transaction\Transaction;
 
 /**
- * This provides a fluid iterface for creating a transaction
+ * This provides a fluent iterface for creating a transaction
  */
 class TransactionRecord
 {
