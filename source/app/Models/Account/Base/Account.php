@@ -10,6 +10,7 @@ use App\Models\Account\Expense;
 use App\Helpers\CustomCollection;
 use App\Models\Account\Liability;
 use App\Models\Account\ContraAsset;
+use App\Models\Account\Traits\Bootstrap;
 use App\Models\Account\Traits\Relationships;
 use App\Helpers\SingleTableInheritanceParent;
 use App\Models\Account\Traits\AttributeModifiers;
@@ -21,7 +22,8 @@ use App\Models\Account\Traits\AttributeModifiers;
  */
 class Account extends SingleTableInheritanceParent
 {
-    use Relationships,
+    use Bootstrap,
+        Relationships,
         CustomCollection,
         AttributeModifiers;
 

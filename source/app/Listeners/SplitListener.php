@@ -49,7 +49,7 @@ class SplitListener extends EventSubscriber
      * @param  Event  $event
      * @return void
      */
-    public function onDestroyed(Event $event)
+    public function onDeleted(Event $event)
     {
         $event->split->account
             ->adjustNormalBalance($event->split->contra())
