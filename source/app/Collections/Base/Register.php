@@ -16,4 +16,14 @@ abstract class Register extends Collection
      * @return \App\Helpers\Money
      */
     abstract public function balance();
+
+    /**
+     * Determine if this register is balanced
+     *
+     * @return boolean
+     */
+    public function isBalanced()
+    {
+        return $this->balance()->value() === 0;
+    }
 }
