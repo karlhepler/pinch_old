@@ -2,6 +2,9 @@
 
 namespace App\Models\Account\Base;
 
+use App\Models\Split\Debit;
+use App\Models\Split\Base\Split;
+
 /**
  * A debit account's balance DECREASES when it is CREDITED
  * and INCREASES when it is DEBITED.
@@ -9,15 +12,19 @@ namespace App\Models\Account\Base;
 class DebitAccount extends Account
 {
     /**
-     * Get the normal balance of this account
+     * Adjust the normal balance depending on the type of split
      *
-     * Accounts have normal balances on the side where the increases in such accounts are recorded.
-     * Accounts are reported on the sides where they have normal balances.
-     *
-     * @return \App\Helpers\Money
+     * @param  \App\Models\Split\Base\Split  $split
+     * @return $this
      */
-    public function normalBalance()
+    public function adjustNormalBalance(Split $split)
     {
-        //
+        if ( $split instanceof Debit ) {
+            $this->normal_balance = $this->normal_balance->sum($split->amount);
+        }
+
+        $this->normal_balance = $this->normal_balance->diff($split->amount);
+
+        return $this;
     }
 }

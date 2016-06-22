@@ -6,8 +6,8 @@ use App\Helpers\Money;
 use App\Models\Split\Debit;
 use App\Models\Split\Credit;
 use App\Models\Split\Base\Split;
+use App\Collections\Base\Register;
 use App\Models\Account\Base\Account;
-use App\Collections\Abstracts\Register;
 
 /**
  * I don't really know what to call this.

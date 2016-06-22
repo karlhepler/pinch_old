@@ -2,7 +2,7 @@
 
 namespace App\Collections;
 
-use App\Collections\Abstracts\Register;
+use App\Collections\Base\Register;
 
 /**
  * The journal is the book of first entry.

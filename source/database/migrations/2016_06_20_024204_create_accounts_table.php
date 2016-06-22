@@ -18,7 +18,7 @@ class CreateAccountsTable extends Migration
 
             $table->string('name')->index();
             $table->enum('type', array_keys(config('budget.account_types')))->index();
-            $table->unsignedInteger('balance')->default(0);
+            $table->unsignedInteger('normal_balance')->default(0);
         });
     }
 

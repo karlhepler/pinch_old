@@ -27,5 +27,7 @@ class TransactionTest extends TestCase
                 ['type' => $this->faker()->randomElement(array_keys(config('budget.split_types'))), 'amount' => $this->faker()->randomNumber, 'account_id' => factory(Account::class)->create()->id, 'memo' => $this->faker()->sentence],
                 ['type' => $this->faker()->randomElement(array_keys(config('budget.split_types'))), 'amount' => $this->faker()->randomNumber, 'account_id' => factory(Account::class)->create()->id, 'memo' => $this->faker()->sentence],
             ]);
+
+        dd( \App\Models\Account\Base\Account::all() );
     }
 }

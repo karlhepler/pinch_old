@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Split;
 
 use App\Events\Event;
 use App\Models\Split\Base\Split;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class SplitUpdated extends Event
+class Deleted extends Event
 {
     use SerializesModels;
 
     /**
-     * The split that was just updated
+     * The split that was just destroyed
      *
      * @var \App\Models\Split\Base\Split
      */

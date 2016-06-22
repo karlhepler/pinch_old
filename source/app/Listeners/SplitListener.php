@@ -15,21 +15,44 @@ class SplitListener extends EventSubscriber
      * @param  Event  $event
      * @return void
      */
-    public function onSplitCreated(Event $event)
+    public function onCreated(Event $event)
     {
-        //
+        $event->split->account
+            ->adjustNormalBalance($event->split)
+            ->save();
     }
 
     /**
      * A split was just updated
+     *
+     * We need to adjust the balance of the related account.
+     * However, we need to do two operations in order to accomplish this.
+     * We need to remove the effect the previous entry had on the balance.
+     * Then we need to affect the balance with the new entry.
+     *
+     * @param  Event  $event
+     * @return void
+     */
+    public function onUpdated(Event $event)
+    {
+        $event->split->account
+            ->adjustNormalBalance($event->split->contra())
+            ->adjustNormalBalance($event->split)
+            ->save();
+    }
+
+    /**
+     * A split was just destroyed
      *
      * We need to adjust the balance of the related account
      *
      * @param  Event  $event
      * @return void
      */
-    public function onSplitUpdated(Event $event)
+    public function onDestroyed(Event $event)
     {
-        //
+        $event->split->account
+            ->adjustNormalBalance($event->split->contra())
+            ->save();
     }
 }

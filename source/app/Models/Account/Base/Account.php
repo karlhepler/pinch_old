@@ -12,6 +12,7 @@ use App\Models\Account\Liability;
 use App\Models\Account\ContraAsset;
 use App\Models\Account\Traits\Relationships;
 use App\Helpers\SingleTableInheritanceParent;
+use App\Models\Account\Traits\AttributeModifiers;
 
 /**
  * This is the base account class from which all accounts derive.
@@ -21,7 +22,8 @@ use App\Helpers\SingleTableInheritanceParent;
 class Account extends SingleTableInheritanceParent
 {
     use Relationships,
-        CustomCollection;
+        CustomCollection,
+        AttributeModifiers;
 
     protected $table = 'accounts';
     protected $fillable = ['name', 'type'];
