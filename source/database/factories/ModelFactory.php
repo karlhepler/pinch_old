@@ -19,16 +19,75 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
-
+/**
+ * Merchant
+ */
 $factory->define(App\Models\Merchant\Merchant::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->company,
     ];
 });
 
+/**
+ * Random Account Type
+ */
 $factory->define(App\Models\Account\Base\Account::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->word,
         'type' => $faker->randomElement(array_keys(config('budget.account_types'))),
+    ];
+});
+
+/**
+ * Asset Account
+ */
+$factory->define(App\Models\Account\Asset::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word
+    ];
+});
+
+/**
+ * ContraAsset Account
+ */
+$factory->define(App\Models\Account\ContraAsset::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word
+    ];
+});
+
+/**
+ * Equity Account
+ */
+$factory->define(App\Models\Account\Equity::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word
+    ];
+});
+
+/**
+ * Expense Account
+ */
+$factory->define(App\Models\Account\Expense::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word
+    ];
+});
+
+/**
+ * Income Account
+ */
+$factory->define(App\Models\Account\Income::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word
+    ];
+});
+
+/**
+ * Liability Account
+ */
+$factory->define(App\Models\Account\Liability::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word
     ];
 });

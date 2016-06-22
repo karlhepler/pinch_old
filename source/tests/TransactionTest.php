@@ -17,16 +17,35 @@ class TransactionTest extends TestCase
      */
     function it_can_record_a_new_transaction()
     {
+        // Create two accounts
+        $bank = factory(\App\Models\Account\Asset::class)->create();
+        $expense = factory(\App\Models\Account\Expense::class)->create();
+        $income = factory(\App\Models\Account\Income::class)->create();
+
+        $incomeAmount = $this->faker()->numberBetween(1, 10000);
+        $expenseAmount = $this->faker()->numberBetween(1, 10000);
+
+        // Record some income
         $transaction = Transaction::record()
             ->on($this->faker()->date())
             ->with(factory(Merchant::class)->create()->id)
             ->describedBy($this->faker()->sentence)
             ->andHavingSplits([
-                ['type' => $this->faker()->randomElement(array_keys(config('budget.split_types'))), 'amount' => $this->faker()->randomNumber, 'account_id' => factory(Account::class)->create()->id, 'memo' => $this->faker()->sentence],
-                ['type' => $this->faker()->randomElement(array_keys(config('budget.split_types'))), 'amount' => $this->faker()->randomNumber, 'account_id' => factory(Account::class)->create()->id, 'memo' => $this->faker()->sentence],
-                ['type' => $this->faker()->randomElement(array_keys(config('budget.split_types'))), 'amount' => $this->faker()->randomNumber, 'account_id' => factory(Account::class)->create()->id, 'memo' => $this->faker()->sentence],
-                ['type' => $this->faker()->randomElement(array_keys(config('budget.split_types'))), 'amount' => $this->faker()->randomNumber, 'account_id' => factory(Account::class)->create()->id, 'memo' => $this->faker()->sentence],
+                ['type' => 'credit', 'amount' => $incomeAmount, 'account_id' => $income->id, 'memo' => $this->faker()->sentence],
+                ['type' => 'debit', 'amount' => $incomeAmount, 'account_id' => $bank->id, 'memo' => $this->faker()->sentence],
             ]);
+
+        // Record an expense
+        $transaction = Transaction::record()
+            ->on($this->faker()->date())
+            ->with(factory(Merchant::class)->create()->id)
+            ->describedBy($this->faker()->sentence)
+            ->andHavingSplits([
+                ['type' => 'credit', 'amount' => $expenseAmount, 'account_id' => $bank->id, 'memo' => $this->faker()->sentence],
+                ['type' => 'debit', 'amount' => $expenseAmount, 'account_id' => $expense->id, 'memo' => $this->faker()->sentence],
+            ]);
+
+        var_dump($incomeAmount, $expenseAmount, $incomeAmount - $expenseAmount);
 
         dd( \App\Models\Account\Base\Account::all() );
     }

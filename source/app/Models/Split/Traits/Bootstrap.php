@@ -21,21 +21,21 @@ trait Bootstrap
          * The Split was just created
          */
         static::created(function(Split $split) {
-            Event::fire(new SplitCreated($split));
+            Event::fire(new SplitCreated($split->fresh()));
         });
 
         /**
          * The Split was just updated
          */
         static::updated(function(Split $split) {
-            Event::fire(new SplitUpdated($split));
+            Event::fire(new SplitUpdated($split->fresh()));
         });
 
         /**
          * The Split was just destroyed
          */
         static::deleted(function(Split $split) {
-            Event::fire(new SplitDeleted($split));
+            Event::fire(new SplitDeleted($split->fresh()));
         });
     }
 }
