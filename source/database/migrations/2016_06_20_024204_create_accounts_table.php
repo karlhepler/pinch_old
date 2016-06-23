@@ -22,6 +22,9 @@ class CreateAccountsTable extends Migration
             $table->unsignedInteger('balance')->default(0);
             $table->unsignedInteger('normal_balance')->default(0);
             $table->unsignedInteger('negative_balance')->default(0);
+
+            $table->unsignedInteger('offset_account_id')->nullable();
+            $table->foreign('offset_account_id')->references('id')->on('accounts')->onDelete('cascade');
         });
     }
 

@@ -16,4 +16,16 @@ trait AttributeModifiers
     {
         return new Money($amount);
     }
+
+    /**
+     * Set the amount attribute
+     *
+     * @param mixed $amount
+     */
+    public function setAmountAttribute($amount)
+    {
+        $this->attributes['amount'] = $amount instanceof Money
+            ? $amount->value()
+            : $amount;
+    }
 }

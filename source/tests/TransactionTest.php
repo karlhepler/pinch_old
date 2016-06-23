@@ -1,8 +1,7 @@
 <?php
 
 use Carbon\Carbon;
-use App\Models\Merchant\Merchant;
-use App\Models\Account\Base\Account;
+use App\Factories\Accountant;
 use App\Models\Transaction\Transaction;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -17,41 +16,43 @@ class TransactionTest extends TestCase
      */
     function it_can_record_a_new_transaction()
     {
-        // Create two accounts
-        $bank = factory(\App\Models\Account\Asset::class)->create(['name' => 'BANK']);
-        $expense = factory(\App\Models\Account\Expense::class)->create(['name' => 'EXPENSE']);
-        $income = factory(\App\Models\Account\Income::class)->create(['name' => 'INCOME']);
+        $bank = Accountant::create([
+            'type' => 'asset',
+            'name' => 'Bank of America',
+        ]);
 
-        $incomeAmount = $this->faker()->numberBetween(1, 10000);
-        $expenseAmount = $this->faker()->numberBetween(1, 10000);
-        $diff = $incomeAmount - $expenseAmount;
+        $income = Accountant::create([
+            'type' => 'income',
+            'name' => 'My Income',
+        ]);
 
-        // Record some income
-        $transaction = Transaction::record()
-            ->on($this->faker()->date())
-            ->with(factory(Merchant::class)->create()->id)
-            ->describedBy($this->faker()->sentence)
+        $expense = Accountant::create([
+            'type' => 'expense',
+            'name' => 'Groceries',
+        ]);
+
+        // Record $100 income into the bank
+        Transaction::record()
+            ->on(Carbon::now())
+            ->describedBy('$100 bank deposit')
             ->andHavingSplits([
-                ['type' => 'credit', 'amount' => $incomeAmount, 'account_id' => $income->id, 'memo' => $this->faker()->sentence],
-                ['type' => 'debit', 'amount' => $incomeAmount, 'account_id' => $bank->id, 'memo' => $this->faker()->sentence],
+                // Debit the bank
+                ['type' => 'debit', 'account_id' => $bank->id, 'amount' => 100],
+                // Credit income
+                ['type' => 'credit', 'account_id' => $income->id, 'amount' => 100],
             ]);
 
-        // Record an expense
-        $transaction = Transaction::record()
-            ->on($this->faker()->date())
-            ->with(factory(Merchant::class)->create()->id)
-            ->describedBy($this->faker()->sentence)
+        // Record $150 spent at store
+        Transaction::record()
+            ->on(Carbon::now())
+            ->describedBy('$150 spent on groceries')
             ->andHavingSplits([
-                ['type' => 'credit', 'amount' => $expenseAmount, 'account_id' => $bank->id, 'memo' => $this->faker()->sentence],
-                ['type' => 'debit', 'amount' => $expenseAmount, 'account_id' => $expense->id, 'memo' => $this->faker()->sentence],
+                // Debit the expense account
+                ['type' => 'debit', 'account_id' => $expense->id, 'amount' => 150],
+                // Credit the bank account
+                ['type' => 'credit', 'account_id' => $bank->id, 'amount' => 150],
             ]);
 
-        $this->assertEquals($diff, $bank->fresh()->balance->value());
-        $this->assertEquals(0, $income->fresh()->negative_balance->value());
-        $this->assertEquals($expenseAmount, $expense->fresh()->normal_balance->value());
-
-        dd( $transaction->splits->first()->fresh()->account );
-        $transaction->splits->first()->update(['amount' => 4200]);
-        dd( $transaction->splits->first()->fresh()->account );
+        dd( Transaction::all() );
     }
 }
