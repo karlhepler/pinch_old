@@ -45,8 +45,8 @@ class TransactionTest extends TestCase
                 ['type' => 'debit', 'amount' => $expenseAmount, 'account_id' => $expense->id, 'memo' => $this->faker()->sentence],
             ]);
 
-        $this->assertEquals($incomeAmount - $expenseAmount, $bank->normal_balance->value());
-        $this->assertEquals($incomeAmount, $income->normal_balance->value());
-        $this->assertEquals($expenseAmount, $expense->normal_balance->value());
+        $this->assertEquals($incomeAmount - $expenseAmount, $bank->fresh()->normal_balance->value());
+        $this->assertEquals($incomeAmount, $income->fresh()->normal_balance->value());
+        $this->assertEquals($expenseAmount, $expense->fresh()->normal_balance->value());
     }
 }
