@@ -2,6 +2,7 @@
 
 namespace App\Models\Transaction;
 
+use App\Factories\Splitter;
 use App\Collections\Journal;
 use App\Helpers\CustomCollection;
 use App\Factories\TransactionRecord;
@@ -34,5 +35,27 @@ class Transaction extends Model
     public static function record()
     {
         return new TransactionRecord;
+    }
+
+    /**
+     * Add splits to the transaction
+     *
+     * @param  array $splits
+     * @return void
+     */
+    public function addSplits(array $splits)
+    {
+        array_map([$this, 'addSplit'], $splits);
+    }
+
+    /**
+     * Add a split to the transaction
+     *
+     * @param  array $split
+     * @return void
+     */
+    public function addSplit(array $split)
+    {
+        $this->splits()->save(Splitter::newInstance($split));
     }
 }

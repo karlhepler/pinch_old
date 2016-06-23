@@ -103,7 +103,7 @@ class TransactionRecord
         $transaction = Transaction::create($this->attributes);
 
         if ( $this->splitsWereSet() ) {
-            $transaction->splits()->createMany($this->splits);
+            $transaction->addSplits($this->splits);
         }
 
         return $transaction;
