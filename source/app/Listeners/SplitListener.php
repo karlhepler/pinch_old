@@ -18,7 +18,7 @@ class SplitListener extends EventSubscriber
     public function onSplitCreated(Event $event)
     {
         $event->split->account
-            ->adjustNormalBalance($event->split)
+            ->updateBalance($event->split)
             ->save();
     }
 
@@ -36,8 +36,8 @@ class SplitListener extends EventSubscriber
     public function onSplitUpdated(Event $event)
     {
         $event->split->account
-            ->adjustNormalBalance($event->split->contra())
-            ->adjustNormalBalance($event->split)
+            ->updateBalance($event->split->contra())
+            ->updateBalance($event->split)
             ->save();
     }
 
@@ -52,7 +52,7 @@ class SplitListener extends EventSubscriber
     public function onSplitDeleted(Event $event)
     {
         $event->split->account
-            ->adjustNormalBalance($event->split->contra())
+            ->updateBalance($event->split->contra())
             ->save();
     }
 }

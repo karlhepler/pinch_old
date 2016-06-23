@@ -24,6 +24,7 @@ class TransactionTest extends TestCase
 
         $incomeAmount = $this->faker()->numberBetween(1, 10000);
         $expenseAmount = $this->faker()->numberBetween(1, 10000);
+        $diff = $incomeAmount - $expenseAmount;
 
         // Record some income
         $transaction = Transaction::record()
@@ -45,8 +46,8 @@ class TransactionTest extends TestCase
                 ['type' => 'debit', 'amount' => $expenseAmount, 'account_id' => $expense->id, 'memo' => $this->faker()->sentence],
             ]);
 
-        $this->assertEquals($incomeAmount - $expenseAmount, $bank->fresh()->normal_balance->value());
-        $this->assertEquals($incomeAmount, $income->fresh()->normal_balance->value());
+        $this->assertEquals($diff, $bank->fresh()->balance->value());
+        $this->assertEquals(0, $income->fresh()->negative_balance->value());
         $this->assertEquals($expenseAmount, $expense->fresh()->normal_balance->value());
     }
 }
