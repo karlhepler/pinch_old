@@ -36,7 +36,7 @@ class SplitListener extends EventSubscriber
     public function onSplitUpdated(Event $event)
     {
         $event->split->account
-            ->updateBalance($event->split->contra())
+            ->updateBalance($event->split->original()->contra())
             ->updateBalance($event->split)
             ->save();
     }

@@ -49,5 +49,9 @@ class TransactionTest extends TestCase
         $this->assertEquals($diff, $bank->fresh()->balance->value());
         $this->assertEquals(0, $income->fresh()->negative_balance->value());
         $this->assertEquals($expenseAmount, $expense->fresh()->normal_balance->value());
+
+        dd( $transaction->splits->first()->fresh()->account );
+        $transaction->splits->first()->update(['amount' => 4200]);
+        dd( $transaction->splits->first()->fresh()->account );
     }
 }

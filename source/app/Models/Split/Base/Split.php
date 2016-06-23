@@ -3,6 +3,7 @@
 namespace App\Models\Split\Base;
 
 use App\Collections\Splits;
+use App\Factories\Splitter;
 use App\Models\Split\Debit;
 use App\Models\Split\Credit;
 use App\Helpers\CustomCollection;
@@ -31,6 +32,25 @@ class Split extends SingleTableInheritanceParent
     protected $table = 'splits';
     protected $fillable = ['type', 'amount', 'memo', 'account_id', 'transaction_id'];
     protected $customCollectionType = Splits::class;
+
+    ////////////////////
+    // PUBLIC METHODS //
+    ////////////////////
+
+    /**
+     * Get an instance of the split based on
+     * original data instead of attribute data
+     *
+     * @return \App\Models\Split\Base\Split
+     */
+    public function original()
+    {
+        return Splitter::newInstance($this->getOriginal());
+    }
+
+    ///////////////////////
+    // PROTECTED METHODS //
+    ///////////////////////
 
     /**
      * Get the single table inheritance class map
