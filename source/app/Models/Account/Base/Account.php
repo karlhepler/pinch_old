@@ -36,7 +36,7 @@ class Account extends SingleTableInheritanceParent
      *
      * @return array
      */
-    protected function singleTableInheritanceClassMap()
+    protected function singleTableInheritanceChildren()
     {
         return config('budget.account_types');
     }

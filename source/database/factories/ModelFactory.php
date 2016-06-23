@@ -43,7 +43,8 @@ $factory->define(App\Models\Account\Base\Account::class, function (Faker\Generat
  */
 $factory->define(App\Models\Account\Asset::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->word
+        'name' => $faker->word,
+        'normal_balance' => 0,
     ];
 });
 
@@ -52,7 +53,8 @@ $factory->define(App\Models\Account\Asset::class, function (Faker\Generator $fak
  */
 $factory->define(App\Models\Account\ContraAsset::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->word
+        'name' => $faker->word,
+        'normal_balance' => 0,
     ];
 });
 
@@ -61,7 +63,8 @@ $factory->define(App\Models\Account\ContraAsset::class, function (Faker\Generato
  */
 $factory->define(App\Models\Account\Equity::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->word
+        'name' => $faker->word,
+        'normal_balance' => 0,
     ];
 });
 
@@ -70,7 +73,8 @@ $factory->define(App\Models\Account\Equity::class, function (Faker\Generator $fa
  */
 $factory->define(App\Models\Account\Expense::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->word
+        'name' => $faker->word,
+        'normal_balance' => 0,
     ];
 });
 
@@ -79,7 +83,8 @@ $factory->define(App\Models\Account\Expense::class, function (Faker\Generator $f
  */
 $factory->define(App\Models\Account\Income::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->word
+        'name' => $faker->word,
+        'normal_balance' => 0,
     ];
 });
 
@@ -88,6 +93,7 @@ $factory->define(App\Models\Account\Income::class, function (Faker\Generator $fa
  */
 $factory->define(App\Models\Account\Liability::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->word
+        'name' => $faker->word,
+        'normal_balance' => 0,
     ];
 });

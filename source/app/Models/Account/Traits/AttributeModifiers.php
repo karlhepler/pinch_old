@@ -24,11 +24,8 @@ trait AttributeModifiers
      */
     public function setNormalBalanceAttribute($normalBalance)
     {
-        if ( $normalBalance instanceof Money ) {
-            $this->attributes['normal_balance'] = $normalBalance->value();
-            return;
-        }
-
-        $this->attributes['normal_balance'] = $normalBalance;
+        $this->attributes['normal_balance'] = $normalBalance instanceof Money
+            ? $normalBalance->value()
+            : $normalBalance;
     }
 }

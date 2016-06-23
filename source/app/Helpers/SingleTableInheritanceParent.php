@@ -13,7 +13,7 @@ abstract class SingleTableInheritanceParent extends Model
      *
      * @return array
      */
-    abstract protected function singleTableInheritanceClassMap();
+    abstract protected function singleTableInheritanceChildren();
 
     /**
      * !! OVERRIDE ELOQUENT MODEL !!
@@ -43,7 +43,7 @@ abstract class SingleTableInheritanceParent extends Model
      */
     public function newFromBuilder($attributes = [], $connection = null)
     {
-        $class = $this->singleTableInheritanceClassMap()[$attributes->type];
+        $class = $this->singleTableInheritanceChildren()[$attributes->type];
         $model = new $class;
         $model->exists = true;
 
@@ -65,7 +65,7 @@ abstract class SingleTableInheritanceParent extends Model
 
         $instance = new static;
 
-        if (! isset(array_flip($instance->singleTableInheritanceClassMap())[static::class]) ) {
+        if (! isset(array_flip($instance->singleTableInheritanceChildren())[static::class]) ) {
             return;
         }
 

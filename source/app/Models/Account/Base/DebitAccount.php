@@ -20,12 +20,9 @@ class DebitAccount extends Account implements AdjustsNormalBalance
      */
     public function adjustNormalBalance(Split $split)
     {
-        if ( $split instanceof Debit ) {
-            $this->normal_balance = $this->normal_balance->sum($split->amount);
-        }
-        else {
-            $this->normal_balance = $this->normal_balance->diff($split->amount);
-        }
+        $this->normal_balance = $split instanceof Debit
+            ? $this->normal_balance->sum($split->amount)
+            : $this->normal_balance->diff($split->amount);
 
         return $this;
     }

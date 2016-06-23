@@ -18,9 +18,9 @@ class TransactionTest extends TestCase
     function it_can_record_a_new_transaction()
     {
         // Create two accounts
-        $bank = factory(\App\Models\Account\Asset::class)->create();
-        $expense = factory(\App\Models\Account\Expense::class)->create();
-        $income = factory(\App\Models\Account\Income::class)->create();
+        $bank = factory(\App\Models\Account\Asset::class)->create(['name' => 'BANK']);
+        $expense = factory(\App\Models\Account\Expense::class)->create(['name' => 'EXPENSE']);
+        $income = factory(\App\Models\Account\Income::class)->create(['name' => 'INCOME']);
 
         $incomeAmount = $this->faker()->numberBetween(1, 10000);
         $expenseAmount = $this->faker()->numberBetween(1, 10000);
@@ -45,8 +45,8 @@ class TransactionTest extends TestCase
                 ['type' => 'debit', 'amount' => $expenseAmount, 'account_id' => $expense->id, 'memo' => $this->faker()->sentence],
             ]);
 
-        var_dump($incomeAmount, $expenseAmount, $incomeAmount - $expenseAmount);
-
-        dd( \App\Models\Account\Base\Account::all() );
+        $this->assertEquals($incomeAmount - $expenseAmount, $bank->normal_balance->value());
+        $this->assertEquals($incomeAmount, $income->normal_balance->value());
+        $this->assertEquals($expenseAmount, $expense->normal_balance->value());
     }
 }

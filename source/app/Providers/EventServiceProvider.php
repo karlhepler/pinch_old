@@ -9,5 +9,6 @@ class EventServiceProvider extends ServiceProvider
 {
     protected $subscribe = [
         \App\Listeners\SplitListener::class,
+        \App\Listeners\AccountListener::class,
     ];
 }

@@ -37,7 +37,7 @@ class Split extends SingleTableInheritanceParent
      *
      * @return array
      */
-    protected function singleTableInheritanceClassMap()
+    protected function singleTableInheritanceChildren()
     {
         return config('budget.split_types');
     }

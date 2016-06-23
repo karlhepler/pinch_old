@@ -19,6 +19,6 @@ class AccountListener extends EventSubscriber
      */
     public function onAccountSaving(Event $event)
     {
-        // 
+        //
     }
 }
