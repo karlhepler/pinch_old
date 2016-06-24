@@ -2,6 +2,7 @@
 
 namespace App\Models\Account\Traits;
 
+use App\Models\User\User;
 use App\Models\Split\Base\Split;
 use App\Models\Account\Base\Account;
 
@@ -25,5 +26,35 @@ trait Relationships
     public function offsetAccount()
     {
         return $this->belongsTo(Account::class);
+    }
+
+    /**
+     * Get the parent account
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function parentAccount()
+    {
+        return $this->belongsTo(Account::class);
+    }
+
+    /**
+     * Get the child accounts
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function childAccounts()
+    {
+        return $this->hasMany(Account::class);
+    }
+
+    /**
+     * This account belongs to a user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\User;
 
+use App\Factories\Accountant;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -23,4 +24,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Create a new account for this user
+     *
+     * @return \App\Factories\Accountant
+     */
+    public function createAccount()
+    {
+        return (new Accountant)->forUser($this);
+    }
 }
