@@ -1,7 +1,10 @@
 <?php
 
 use Carbon\Carbon;
+use App\Models\User\User;
 use App\Factories\Accountant;
+use App\Models\Split\Base\Split;
+use App\Models\Account\Base\Account;
 use App\Models\Transaction\Transaction;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -63,12 +66,12 @@ class TransactionTest extends TestCase
         // * Liabilities:Credit Card
         // * Liabilities:Accounts Payable
 
-        // Create a user
-        $user = factory(User::class)->create();
+        $user = User::register([
+            'name' => 'Karl',
+            'email' => 'karl.hepler@gmail.com',
+            'password' => bcrypt('password'),
+        ]);
 
-        // Create the user's initial parent accounts
-        $user->createAccount()->ofType('asset')->named('Current Assets')->andWithOpeningBalance(0);
-        $account->createChildAccount()->named('Something Else')->andWithOpeningBalance(100);
-        $account->createSiblingAccount()->named('Sibling')->andWithOpeningBalance(123);
+        dd( Transaction::with('splits.account')->first()->toArray() );
     }
 }

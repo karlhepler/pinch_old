@@ -3,10 +3,14 @@
 namespace App\Models\User;
 
 use App\Factories\Accountant;
+use App\Factories\UserFactory;
+use App\Models\User\Traits\Relationships;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use Relationships;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -33,5 +37,16 @@ class User extends Authenticatable
     public function createAccount()
     {
         return (new Accountant)->forUser($this);
+    }
+
+    /**
+     * Register a new user
+     *
+     * @param  array  $attributes
+     * @return \App\Models\User\User
+     */
+    public static function register(array $attributes)
+    {
+        return UserFactory::create($attributes);
     }
 }

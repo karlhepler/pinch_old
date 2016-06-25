@@ -2,7 +2,7 @@
 
 namespace App\Collections\Base;
 
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * A register is a collection of valuable entries

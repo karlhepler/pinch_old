@@ -80,7 +80,7 @@ class Accountant extends FluentFactory
      */
     public function ofType($type)
     {
-        $this->$Account = config('budget.account_types')[$type];
+        $this->AccountClass = config('budget.account_types')[$type];
 
         return $this;
     }
@@ -121,11 +121,14 @@ class Accountant extends FluentFactory
      */
     public function create($shouldCreateOffsetAccount = true)
     {
+        // Localize Account Class
+        $AccountClass = $this->AccountClass;
+
         // Create the account
-        $account = $this->AccountClass::create($this->attributes);
+        $account = $AccountClass::create($this->attributes);
 
         // Record the opening balance
-        $this->recordOpeningBalance();
+        $this->recordOpeningBalance($account);
 
         // Just return the account if we shouldn't
         // create the offset account
@@ -134,10 +137,10 @@ class Accountant extends FluentFactory
         }
 
         // Create the offset account
-        $offsetAccount = $this->createOffsetAccount();
+        $offsetAccount = $this->createOffsetAccount($account);
 
-        // Associate this with its offset account
-        $this->associateWithOffsetAccount($offsetAccount);
+        // Associate the new account with its offset account
+        $this->associateAccounts($account, $offsetAccount);
 
         // Return the account
         return $account;
@@ -150,25 +153,27 @@ class Accountant extends FluentFactory
     /**
      * Create the offset account based on this account
      *
+     * @param  \App\Models\Account\Base\Account $account
      * @return \App\Models\Account\Base\Account
      */
-    protected function createOffsetAccount()
+    protected function createOffsetAccount(Account $account)
     {
         return (new static)
-            ->forUser($this->attributes['user_id'])
-            ->ofType($this->getOffsetAccountType())
-            ->named($this->attributes['name'])
+            ->forUser($account->user_id)
+            ->ofType($this->getOffsetAccountType($account))
+            ->named($account->name)
             ->create(false);
     }
 
     /**
      * Get the offset account type as a string
      *
+     * @param  \App\Models\Account\Base\Account $account
      * @return string
      */
-    protected function getOffsetAccountType()
+    protected function getOffsetAccountType(Account $account)
     {
-        return $this instanceof DebitAccount
+        return $account instanceof DebitAccount
             ? 'liability'
             : 'asset';
     }
@@ -176,44 +181,46 @@ class Accountant extends FluentFactory
     /**
      * Associate this with its offset account
      *
-     * @param  Account $offsetAccount
+     * @param  \App\Models\Account\Base\Account $account
+     * @param  \App\Models\Account\Base\Account $offsetAccount
      * @return void
      */
-    protected function associateWithOffsetAccount(Account $offsetAccount)
+    protected function associateAccounts(Account $account, Account $offsetAccount)
     {
-        $this->offset_account_id = $offsetAccount->id;
-        $offsetAccount->offset_account_id = $this->id;
+        $account->offset_account_id = $offsetAccount->id;
+        $offsetAccount->offset_account_id = $account->id;
 
-        $this->save();
+        $account->save();
         $offsetAccount->save();
     }
 
     /**
      * Record the opening balance
      *
+     * @param  \App\Models\Account\Base\Account $account
      * @return void
      */
-    protected function recordOpeningBalance()
+    protected function recordOpeningBalance(Account $account)
     {
         // Define which direction we are pushing the balance
         $balanceDirection = (new Money($this->openingBalanceAmount))->isPositive()
-            ? $this::BALANCE_INCREASE
-            : $this::BALANCE_DECREASE;
+            ? $account::BALANCE_INCREASE
+            : $account::BALANCE_DECREASE;
 
         Transaction::record()
             ->on(Carbon::now())
-            ->describedBy("Opening balance for {$this->name}.")
+            ->describedBy("Opening balance for ({$account->type}#{$account->id}) {$account->name}.")
             ->andHavingSplits([
                 // Increase/Decrease its balance
                 [
-                    'type' => array_flip(config('budget.split_types'), $balanceDirection),
-                    'account_id' => $this->id,
+                    'type' => array_flip(config('budget.split_types'))[$balanceDirection],
+                    'account_id' => $account->id,
                     'amount' => $this->openingBalanceAmount,
                 ],
                 // Increase/Decrease the opening balance equity account
                 [
-                    'type' => array_flip(config('budget.split_types'), $balanceDirection),
-                    'account_id' => $this->getOpeningBalancesAccount()->id,
+                    'type' => array_flip(config('budget.split_types'))[$balanceDirection],
+                    'account_id' => $this->getOpeningBalanceAccount()->id,
                     'amount' => $this->openingBalanceAmount,
                 ]
             ]);
@@ -224,9 +231,9 @@ class Accountant extends FluentFactory
      *
      * @return \App\Models\Account\Equity
      */
-    protected function getOpeningBalancesAccount()
+    protected function getOpeningBalanceAccount()
     {
-        return Equity::where('user_id', $this->userId)
+        return Equity::where('user_id', $this->attributes['user_id'])
             ->where('name', 'Opening Balances')
             ->firstOrFail();
     }
