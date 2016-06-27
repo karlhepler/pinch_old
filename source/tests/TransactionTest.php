@@ -72,6 +72,6 @@ class TransactionTest extends TestCase
             'password' => bcrypt('password'),
         ]);
 
-        dd( Transaction::with('splits.account')->first()->toArray() );
+        dd( Transaction::with('splits.account')->get(['description'])->toArray() );
     }
 }

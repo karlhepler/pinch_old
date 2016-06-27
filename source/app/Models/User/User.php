@@ -2,14 +2,15 @@
 
 namespace App\Models\User;
 
-use App\Factories\Accountant;
 use App\Factories\UserFactory;
 use App\Models\User\Traits\Relationships;
+use App\Models\User\Traits\AccountCreation;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Relationships;
+    use Relationships,
+        AccountCreation;
     
     /**
      * The attributes that are mass assignable.
@@ -28,16 +29,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    /**
-     * Create a new account for this user
-     *
-     * @return \App\Factories\Accountant
-     */
-    public function createAccount()
-    {
-        return (new Accountant)->forUser($this);
-    }
 
     /**
      * Register a new user

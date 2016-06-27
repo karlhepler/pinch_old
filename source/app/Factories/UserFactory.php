@@ -16,11 +16,11 @@ class UserFactory
     {
         $user = User::create($attributes);
 
-        $user->createAccount()->ofType('equity')->andNamed('Opening Balances');
-        $user->createAccount()->ofType('asset')->andNamed('Current Assets');
-        $user->createAccount()->ofType('asset')->andNamed('Accounts Receiveable');
-        $user->createAccount()->ofType('liability')->andNamed('Credit Cards');
-        $user->createAccount()->ofType('liability')->andNamed('Accounts Payable');
+        $user->openEquityAccount()->andNamed('Opening Balances');
+        $user->openAssetAccount()->andNamed('Accounts Receiveable');
+        $user->openLiabilityAccount()->andNamed('Accounts Payable');
+        $user->openLiabilityAccount()->andNamed('Credit Cards');
+        $user->openAssetAccount()->andNamed('Current Assets');
 
         return $user;
     }
