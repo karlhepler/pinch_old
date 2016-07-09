@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\Event;
-use App\Helpers\EventSubscriber;
+use OldTimeGuitarGuy\LaravelEventSubscriber\EventSubscriber;
 
 class SplitListener extends EventSubscriber
 {

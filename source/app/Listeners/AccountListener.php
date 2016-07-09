@@ -4,8 +4,8 @@ namespace App\Listeners;
 
 use Carbon\Carbon;
 use App\Events\Event;
-use App\Helpers\EventSubscriber;
 use App\Models\Transaction\Transaction;
+use OldTimeGuitarGuy\LaravelEventSubscriber\EventSubscriber;
 
 class AccountListener extends EventSubscriber
 {

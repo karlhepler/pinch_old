@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Account\Traits;
+namespace App\Models\Account\Base\Traits;
 
 use App\Models\User\User;
 use App\Models\Split\Base\Split;

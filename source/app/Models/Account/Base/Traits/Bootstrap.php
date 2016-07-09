@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Account\Traits;
+namespace App\Models\Account\Base\Traits;
 
 use Event;
 use App\Models\Account\Base\Account;
@@ -18,7 +18,7 @@ trait Bootstrap
         /**
          * The Account is about to save
          */
-        static::saving(function(Account $account) {
+        static::saving(function (Account $account) {
             Event::fire(new AccountSaving($account));
         });
     }

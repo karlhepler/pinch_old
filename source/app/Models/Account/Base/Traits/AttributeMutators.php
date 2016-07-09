@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models\Account\Traits;
+namespace App\Models\Account\Base\Traits;
 
 use App\Helpers\Money;
 
-trait AttributeModifiers
+trait AttributeMutators
 {
     /**
      * Get the balance as money

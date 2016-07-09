@@ -4,34 +4,50 @@ namespace App\Models\Account\Base;
 
 use App\Collections\Ledger;
 use App\Factories\Accountant;
-use App\Models\Account\Asset;
-use App\Models\Account\Equity;
-use App\Models\Account\Income;
-use App\Models\Account\Expense;
 use App\Models\Split\Base\Split;
 use App\Helpers\CustomCollection;
-use App\Models\Account\Liability;
-use App\Models\Account\ContraAsset;
-use App\Models\Account\Traits\Bootstrap;
-use App\Models\Account\Traits\Relationships;
-use App\Helpers\SingleTableInheritanceParent;
-use App\Models\Account\Traits\AttributeModifiers;
+use OldTimeGuitarGuy\SingleTableInheritance\StiParent;
 
 /**
  * This is the base account class from which all accounts derive.
  * It allowed for single table inheritance, and uses the custom
  * collection type "Ledger".
  */
-class Account extends SingleTableInheritanceParent
+class Account extends StiParent
 {
-    use Bootstrap,
-        Relationships,
-        CustomCollection,
-        AttributeModifiers;
+    use CustomCollection,
+        Traits\Bootstrap,
+        Traits\Relationships,
+        Traits\AttributeMutators;
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'accounts';
-    protected $fillable = ['name', 'type', 'user_id', 'parent_account_id'];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'type', 'user_id', 'parent_account_id'
+    ];
+
+    /**
+     * The fully-qualified classname
+     * of the custom collection type
+     * you would like to use for this model.
+     *
+     * @var string
+     */
     protected $customCollectionType = Ledger::class;
+
+    ////////////////////
+    // PUBLIC METHODS //
+    ////////////////////
 
     /**
      * Adjust the balance, normal balance, & negative balance
@@ -42,11 +58,10 @@ class Account extends SingleTableInheritanceParent
      */
     public function updateBalance(Split $split)
     {
-        if ( is_a($split, $this::BALANCE_INCREASE) ) {
+        if (is_a($split, $this::BALANCE_INCREASE)) {
             $this->balance = $this->balance->sum($split->amount);
             $this->normal_balance = $this->normal_balance->sum($split->amount);
-        }
-        else {
+        } else {
             $this->balance = $this->balance->diff($split->amount);
             $this->negative_balance = $this->negative_balance->sum($split->amount);
         }
@@ -80,12 +95,16 @@ class Account extends SingleTableInheritanceParent
             ->ofType($this->type);
     }
 
+    ///////////////////////
+    // PROTECTED METHODS //
+    ///////////////////////
+
     /**
-     * Get the single table inheritance class map
+     * Get the single table inheritance children
      *
      * @return array
      */
-    protected function singleTableInheritanceChildren()
+    protected static function stiChildren()
     {
         return config('budget.account_types');
     }

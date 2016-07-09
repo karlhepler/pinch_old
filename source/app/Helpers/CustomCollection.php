@@ -5,6 +5,15 @@ namespace App\Helpers;
 trait CustomCollection
 {
     /**
+     * The fully-qualified classname
+     * of the custom collection type
+     * you would like to use for this model.
+     *
+     * @var string
+     */
+    protected $customCollectionType;
+
+    /**
      * !! OVERRIDE ELOQUENT MODEL !!
      * Create a new Eloquent Collection instance.
      *
@@ -13,6 +22,10 @@ trait CustomCollection
      */
     public function newCollection(array $models = [])
     {
-        return new $this->customCollectionType($models);
+        if ( isset($this->customCollectionType) ) {
+            return new $this->customCollectionType($models);
+        }
+
+        return parent::newCollection($models);
     }
 }

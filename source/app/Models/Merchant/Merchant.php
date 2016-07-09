@@ -3,7 +3,6 @@
 namespace App\Models\Merchant;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Merchant\Traits\Relationships;
 
 /**
  * While inconsequential to the accounting of a transaction,
@@ -12,7 +11,14 @@ use App\Models\Merchant\Traits\Relationships;
  */
 class Merchant extends Model
 {
-    use Relationships;
+    use Traits\Relationships;
 
-    protected $fillable = ['name'];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name'
+    ];
 }
