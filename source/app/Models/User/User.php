@@ -3,14 +3,12 @@
 namespace App\Models\User;
 
 use App\Factories\UserFactory;
-use App\Models\User\Traits\Relationships;
-use App\Models\User\Traits\AccountCreation;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Relationships,
-        AccountCreation;
+    use Traits\Relationships,
+        Traits\AccountCreation;
     
     /**
      * The attributes that are mass assignable.

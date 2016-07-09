@@ -4,13 +4,8 @@ namespace App\Models\Split\Base;
 
 use App\Collections\Splits;
 use App\Factories\Splitter;
-use App\Models\Split\Debit;
-use App\Models\Split\Credit;
 use App\Helpers\CustomCollection;
-use App\Models\Split\Traits\Bootstrap;
-use App\Models\Split\Traits\Relationships;
-use App\Helpers\SingleTableInheritanceParent;
-use App\Models\Split\Traits\AttributeModifiers;
+use OldTimeGuitarGuy\SingleTableInheritance\StiParent;
 
 /**
  * A split is a single split of itemization of an account
@@ -22,15 +17,36 @@ use App\Models\Split\Traits\AttributeModifiers;
  * wind of it, figure out if it is an asset, and recommend a
  * sinking fund for it.
  */
-class Split extends SingleTableInheritanceParent
+class Split extends StiParent
 {
-    use Bootstrap,
-        Relationships,
-        CustomCollection,
-        AttributeModifiers;
+    use CustomCollection,
+        Traits\Bootstrap,
+        Traits\Relationships,
+        Traits\AttributeMutators;
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'splits';
-    protected $fillable = ['type', 'amount', 'memo', 'account_id', 'transaction_id'];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'type', 'amount', 'memo', 'account_id', 'transaction_id'
+    ];
+
+    /**
+     * The fully-qualified classname
+     * of the custom collection type
+     * you would like to use for this model.
+     *
+     * @var string
+     */
     protected $customCollectionType = Splits::class;
 
     ////////////////////
@@ -48,16 +64,16 @@ class Split extends SingleTableInheritanceParent
         return Splitter::newInstance($this->getOriginal());
     }
 
-    ///////////////////////
-    // PROTECTED METHODS //
-    ///////////////////////
+    //////////////////////////////
+    // PROTECTED STATIC METHODS //
+    //////////////////////////////
 
     /**
-     * Get the single table inheritance class map
+     * Get the single table inheritance children
      *
      * @return array
      */
-    protected function singleTableInheritanceChildren()
+    protected static function stiChildren()
     {
         return config('budget.split_types');
     }

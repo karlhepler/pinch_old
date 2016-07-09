@@ -1,4 +1,4 @@
-BUDGET
+PINCH
 ======
 
 ## Money

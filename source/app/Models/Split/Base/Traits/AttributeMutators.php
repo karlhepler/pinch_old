@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models\Split\Traits;
+namespace App\Models\Split\Base\Traits;
 
 use App\Helpers\Money;
 
-trait AttributeModifiers
+trait AttributeMutators
 {
     /**
      * Get the amount as money

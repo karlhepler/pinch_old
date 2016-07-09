@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Split\Traits;
+namespace App\Models\Split\Base\Traits;
 
 use Event;
 use App\Models\Split\Base\Split;
@@ -20,21 +20,21 @@ trait Bootstrap
         /**
          * The Split was just created
          */
-        static::created(function(Split $split) {
+        static::created(function (Split $split) {
             Event::fire(new SplitCreated($split));
         });
 
         /**
          * The Split was just updated
          */
-        static::updated(function(Split $split) {
+        static::updated(function (Split $split) {
             Event::fire(new SplitUpdated($split));
         });
 
         /**
          * The Split was just destroyed
          */
-        static::deleted(function(Split $split) {
+        static::deleted(function (Split $split) {
             Event::fire(new SplitDeleted($split));
         });
     }

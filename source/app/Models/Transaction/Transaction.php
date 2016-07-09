@@ -7,7 +7,6 @@ use App\Collections\Journal;
 use App\Helpers\CustomCollection;
 use App\Factories\TransactionRecord;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Transaction\Traits\Relationships;
 
 /**
  * A transaction is technicially just an exchange between two merchants.
@@ -20,12 +19,39 @@ use App\Models\Transaction\Traits\Relationships;
  */
 class Transaction extends Model
 {
-    use Relationships,
-        CustomCollection;
+    use CustomCollection,
+        Traits\Relationships;
 
-    protected $fillable = ['transacted_at', 'merchant_id', 'description'];
-    protected $dates = ['transacted_at'];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'transacted_at', 'merchant_id', 'description'
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'transacted_at'
+    ];
+
+    /**
+     * The fully-qualified classname
+     * of the custom collection type
+     * you would like to use for this model.
+     *
+     * @var string
+     */
     protected $customCollectionType = Journal::class;
+
+    ////////////////////
+    // PUBLIC METHODS //
+    ////////////////////
 
     /**
      * Record a new transaction in the journal & ledger

@@ -58,7 +58,7 @@ class Account extends StiParent
      */
     public function updateBalance(Split $split)
     {
-        if (is_a($split, $this::BALANCE_INCREASE)) {
+        if ( is_a($split, $this::BALANCE_INCREASE) ) {
             $this->balance = $this->balance->sum($split->amount);
             $this->normal_balance = $this->normal_balance->sum($split->amount);
         } else {
@@ -95,9 +95,9 @@ class Account extends StiParent
             ->ofType($this->type);
     }
 
-    ///////////////////////
-    // PROTECTED METHODS //
-    ///////////////////////
+    //////////////////////////////
+    // PROTECTED STATIC METHODS //
+    //////////////////////////////
 
     /**
      * Get the single table inheritance children
