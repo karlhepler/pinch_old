@@ -119,7 +119,7 @@ class Accountant extends FluentFactory
      * @param  boolean $shouldCreateOffsetAccount
      * @return \App\Models\Account\Base\Account
      */
-    public function create($shouldCreateOffsetAccount = true)
+    public function create($shouldCreateOffsetAccount = false)
     {
         // Localize Account Class
         $AccountClass = $this->AccountClass;
@@ -233,8 +233,9 @@ class Accountant extends FluentFactory
      */
     protected function getOpeningBalanceAccount()
     {
-        return Equity::where('user_id', $this->attributes['user_id'])
-            ->where('name', 'Opening Balances')
-            ->firstOrFail();
+        return Equity::firstOrCreate([
+            'user_id' => $this->attributes['user_id'],
+            'name' => 'Opening Balances',
+        ]);
     }
 }

@@ -33,9 +33,9 @@ class AccountListener extends EventSubscriber
             ->on(Carbon::now())
             ->describedBy("BALANCE ADJUSTMENT: {$event->account->name} -> {$event->account->balance->abs()} -> {$event->account->offsetAccount->name}.")
             ->andHavingSplits([
-                // Credit this account
+                // Debit this account
                 ['type' => 'debit', 'account_id' => $event->account->id, 'amount' => $event->account->balance->abs()],
-                // Debit the offset account
+                // Credit the offset account
                 ['type' => 'credit', 'account_id' => $event->account->offsetAccount->id, 'amount' => $event->account->balance->abs()],
             ]);
     }

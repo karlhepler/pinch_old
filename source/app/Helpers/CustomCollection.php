@@ -5,15 +5,6 @@ namespace App\Helpers;
 trait CustomCollection
 {
     /**
-     * The fully-qualified classname
-     * of the custom collection type
-     * you would like to use for this model.
-     *
-     * @var string
-     */
-    protected $customCollectionType;
-
-    /**
      * !! OVERRIDE ELOQUENT MODEL !!
      * Create a new Eloquent Collection instance.
      *

@@ -23,17 +23,7 @@ trait AccountCreation
      */
     public function openAssetAccount()
     {
-        return $this->createAccount()->ofType('asset');
-    }
-
-    /**
-     * Create a contra asset account
-     *
-     * @return \App\Factories\Accountant
-     */
-    public function openContraAssetAccount()
-    {
-        return $this->createAccount()->ofType('contra_asset');
+        return $this->openAccount()->ofType('asset');
     }
 
     /**
@@ -43,7 +33,7 @@ trait AccountCreation
      */
     public function openEquityAccount()
     {
-        return $this->createAccount()->ofType('equity');
+        return $this->openAccount()->ofType('equity');
     }
 
     /**
@@ -53,7 +43,7 @@ trait AccountCreation
      */
     public function openExpenseAccount()
     {
-        return $this->createAccount()->ofType('expense');
+        return $this->openAccount()->ofType('expense');
     }
 
     /**
@@ -63,7 +53,7 @@ trait AccountCreation
      */
     public function openIncomeAccount()
     {
-        return $this->createAccount()->ofType('income');
+        return $this->openAccount()->ofType('income');
     }
 
     /**
@@ -73,6 +63,6 @@ trait AccountCreation
      */
     public function openLiabilityAccount()
     {
-        return $this->createAccount()->ofType('liability');
+        return $this->openAccount()->ofType('liability');
     }
 }

@@ -6,7 +6,6 @@ use App\Helpers\Money;
 use App\Models\Split\Debit;
 use App\Models\Split\Credit;
 use App\Models\Split\Base\Split;
-use App\Collections\Base\Register;
 use App\Models\Account\Base\Account;
 
 /**
@@ -19,7 +18,7 @@ use App\Models\Account\Base\Account;
  * That's how I came up with the word line. Yay. What is a collection
  * of lines called? Splits. Yep. Brilliant, I know. I know... I know.
  */
-class Splits extends Register
+class Splits extends Base\Register
 {
     /**
      * Get the balance of this register

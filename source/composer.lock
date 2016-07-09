@@ -740,16 +740,16 @@
         },
         {
             "name": "oldtimeguitarguy/eloquent-single-table-inheritance",
-            "version": "v1.0.2",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oldtimeguitarguy/eloquent-single-table-inheritance.git",
-                "reference": "121b30e230f59a3b16700cacbef61df0fc998d03"
+                "reference": "f81010533bf67ff0b228e3a7e9ed23d350534643"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oldtimeguitarguy/eloquent-single-table-inheritance/zipball/121b30e230f59a3b16700cacbef61df0fc998d03",
-                "reference": "121b30e230f59a3b16700cacbef61df0fc998d03",
+                "url": "https://api.github.com/repos/oldtimeguitarguy/eloquent-single-table-inheritance/zipball/f81010533bf67ff0b228e3a7e9ed23d350534643",
+                "reference": "f81010533bf67ff0b228e3a7e9ed23d350534643",
                 "shasum": ""
             },
             "type": "library",
@@ -769,7 +769,7 @@
                 }
             ],
             "description": "Simple single table inheritance for eloquent models in Laravel & Lumen",
-            "time": "2016-07-09 19:17:28"
+            "time": "2016-07-09 21:09:21"
         },
         {
             "name": "oldtimeguitarguy/laravel-event-subscriber",

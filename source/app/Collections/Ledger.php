@@ -2,8 +2,6 @@
 
 namespace App\Collections;
 
-use App\Collections\Base\Register;
-
 /**
  * A ledger is the book of final entry.
  * After writing journal entries, we take
@@ -13,7 +11,7 @@ use App\Collections\Base\Register;
  * all of this kind of automatically with how the relationships
  * are set up, we'll just consider this a collection of accounts.
  */
-class Ledger extends Register
+class Ledger extends Base\Register
 {
     /**
      * Get the balance of this register
