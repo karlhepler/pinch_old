@@ -3,15 +3,8 @@
 namespace App\Factories;
 
 /**
- * This is the only way we're creating splits!
- * DON'T FORGET IT!
- *
- * @todo I was thinking this might be a good extension
- * to the single table inheritance class. I was
- * also thinking that singleTableInheritanceChildren
- * should be static and I can rewrite the SingleTableInheritanceParent
- * to take advantage of that instead of creating new instances
- * all the time.
+ * How do you create splits?
+ * With a splitter, of course!
  */
 class Splitter
 {

@@ -11,6 +11,10 @@ use App\Models\Account\Base\Account;
 use App\Models\Transaction\Transaction;
 use App\Models\Account\Base\DebitAccount;
 
+/**
+ * In the real world, accountants do many things.
+ * In our world, accountants just create accounts.
+ */
 class Accountant extends FluentFactory
 {
     /**

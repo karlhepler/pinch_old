@@ -76,14 +76,14 @@ abstract class FluentFactory
 
     /**
      * Get the final method's name, without
-     * the prepended "and"
+     * the prepended "and" or "thatIs"
      *
      * @param  string $methodName
      * @return string|boolean
      */
     protected function finalMethodName($methodName)
     {
-        $result = preg_match("/^and(.+)$/", $methodName, $matches);
+        $result = preg_match("/^(?:and|thatIs)(.+)$/", $methodName, $matches);
 
         if ( $result !== 1 ) {
             return false;

@@ -4,6 +4,10 @@ namespace App\Factories;
 
 use App\Models\User\User;
 
+/**
+ * I couldn't come up with a creative name for this.
+ * Guess what it does...
+ */
 class UserFactory
 {
     /**
@@ -16,11 +20,11 @@ class UserFactory
     {
         $user = User::create($attributes);
 
-        $user->openAssetAccount()->andNamed('Accounts Receiveable');
-        $user->openLiabilityAccount()->andNamed('Accounts Payable');
-        $user->openLiabilityAccount()->andNamed('Credit Cards');
-        $user->openAssetAccount()->andNamed('Current Assets');
-        $user->openAssetAccount()->andNamed('Fixed Assets');
+        $user->openAssetAccount()->thatIsNamed('Accounts Receiveable');
+        $user->openLiabilityAccount()->thatIsNamed('Accounts Payable');
+        $user->openLiabilityAccount()->thatIsNamed('Credit Cards');
+        $user->openAssetAccount()->thatIsNamed('Current Assets');
+        $user->openAssetAccount()->thatIsNamed('Fixed Assets');
 
         return $user;
     }
