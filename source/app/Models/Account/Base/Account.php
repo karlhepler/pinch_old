@@ -5,7 +5,7 @@ namespace App\Models\Account\Base;
 use App\Collections\Ledger;
 use App\Factories\Accountant;
 use App\Models\Split\Base\Split;
-use App\Helpers\CustomCollection;
+use App\Pinch\CustomCollection;
 use OldTimeGuitarGuy\SingleTableInheritance\StiParent;
 
 /**
@@ -106,6 +106,6 @@ class Account extends StiParent
      */
     protected static function stiChildren()
     {
-        return config('budget.account_types');
+        return config('pinch.accountTypes');
     }
 }

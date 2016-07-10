@@ -3,9 +3,9 @@
 namespace App\Factories;
 
 use Carbon\Carbon;
-use App\Helpers\Money;
+use App\Pinch\Money;
 use App\Models\User\User;
-use App\Helpers\FluentFactory;
+use App\Pinch\FluentFactory;
 use App\Models\Account\Equity;
 use App\Models\Account\Base\Account;
 use App\Models\Transaction\Transaction;
@@ -80,7 +80,7 @@ class Accountant extends FluentFactory
      */
     public function ofType($type)
     {
-        $this->AccountClass = config('budget.account_types')[$type];
+        $this->AccountClass = config('pinch.accountTypes')[$type];
 
         return $this;
     }
@@ -101,7 +101,7 @@ class Accountant extends FluentFactory
     /**
      * Specify an opening balance amount
      *
-     * @param  integer|\App\Helpers\Money $amount
+     * @param  integer|\App\Pinch\Money $amount
      * @return $this
      */
     public function withOpeningBalance($amount)
@@ -213,13 +213,13 @@ class Accountant extends FluentFactory
             ->andHavingSplits([
                 // Increase/Decrease its balance
                 [
-                    'type' => array_flip(config('budget.split_types'))[$balanceDirection],
+                    'type' => array_flip(config('pinch.splitTypes'))[$balanceDirection],
                     'account_id' => $account->id,
                     'amount' => $this->openingBalanceAmount,
                 ],
                 // Increase/Decrease the opening balance equity account
                 [
-                    'type' => array_flip(config('budget.split_types'))[$balanceDirection],
+                    'type' => array_flip(config('pinch.splitTypes'))[$balanceDirection],
                     'account_id' => $this->getOpeningBalanceAccount()->id,
                     'amount' => $this->openingBalanceAmount,
                 ]

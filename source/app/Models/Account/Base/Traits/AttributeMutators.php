@@ -2,7 +2,7 @@
 
 namespace App\Models\Account\Base\Traits;
 
-use App\Helpers\Money;
+use App\Pinch\Money;
 
 trait AttributeMutators
 {
@@ -10,7 +10,7 @@ trait AttributeMutators
      * Get the balance as money
      *
      * @param  integer $balance
-     * @return \App\Helpers\Money
+     * @return \App\Pinch\Money
      */
     public function getBalanceAttribute($balance)
     {
@@ -33,7 +33,7 @@ trait AttributeMutators
      * Get the normal balance as money
      *
      * @param  integer $normalBalance
-     * @return \App\Helpers\Money
+     * @return \App\Pinch\Money
      */
     public function getNormalBalanceAttribute($normalBalance)
     {
@@ -56,7 +56,7 @@ trait AttributeMutators
      * Get the negative balance as money
      *
      * @param  integer $negativeBalance
-     * @return \App\Helpers\Money
+     * @return \App\Pinch\Money
      */
     public function getNegativeBalanceAttribute($negativeBalance)
     {

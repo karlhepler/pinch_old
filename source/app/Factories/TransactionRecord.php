@@ -4,7 +4,7 @@ namespace App\Factories;
 
 use Carbon\Carbon;
 use App\Collections\Splits;
-use App\Helpers\FluentFactory;
+use App\Pinch\FluentFactory;
 use App\Models\Merchant\Merchant;
 use App\Models\Transaction\Transaction;
 

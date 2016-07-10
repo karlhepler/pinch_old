@@ -13,7 +13,7 @@ abstract class Register extends Collection
     /**
      * Get the balance of this register
      *
-     * @return \App\Helpers\Money
+     * @return \App\Pinch\Money
      */
     abstract public function balance();
 

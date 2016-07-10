@@ -18,7 +18,7 @@ class CreateSplitsTable extends Migration
 
             $table->unsignedInteger('amount')->default(0);
             $table->string('memo')->default('');
-            $table->enum('type', array_keys(config('budget.split_types')))->index();
+            $table->enum('type', array_keys(config('pinch.splitTypes')))->index();
 
             $table->unsignedInteger('transaction_id');
             $table->unsignedInteger('account_id');

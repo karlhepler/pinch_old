@@ -2,7 +2,7 @@
 
 namespace App\Models\Split\Base\Traits;
 
-use App\Helpers\Money;
+use App\Pinch\Money;
 
 trait AttributeMutators
 {
@@ -10,7 +10,7 @@ trait AttributeMutators
      * Get the amount as money
      *
      * @param  integer $amount
-     * @return \App\Helpers\Money
+     * @return \App\Pinch\Money
      */
     public function getAmountAttribute($amount)
     {

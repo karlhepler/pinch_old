@@ -24,7 +24,7 @@ class Splitter
     public static function newInstance(array $split)
     {
         // Get the class based on type
-        $class = config('budget.split_types')[$split['type']];
+        $class = config('pinch.splitTypes')[$split['type']];
 
         // Return a new instance of that class
         return new $class($split);

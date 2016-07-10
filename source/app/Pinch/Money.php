@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Pinch;
 
 class Money
 {
@@ -34,8 +34,8 @@ class Money
     /**
      * Return the sum of this and other Money
      *
-     * @param  \App\Helpers\Money  $money
-     * @return \App\Helpers\Money
+     * @param  \App\Pinch\Money  $money
+     * @return \App\Pinch\Money
      */
     public function sum(Money $money)
     {
@@ -47,8 +47,8 @@ class Money
     /**
      * Return the difference of this and other Money
      *
-     * @param  \App\Helpers\Money  $money
-     * @return \App\Helpers\Money
+     * @param  \App\Pinch\Money  $money
+     * @return \App\Pinch\Money
      */
     public function diff(Money $money)
     {
@@ -80,7 +80,7 @@ class Money
     /**
      * Return Money of absolute value of this
      *
-     * @return \App\Helpers\Money
+     * @return \App\Pinch\Money
      */
     public function abs()
     {

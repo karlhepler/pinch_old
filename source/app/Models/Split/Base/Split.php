@@ -4,7 +4,7 @@ namespace App\Models\Split\Base;
 
 use App\Collections\Splits;
 use App\Factories\Splitter;
-use App\Helpers\CustomCollection;
+use App\Pinch\CustomCollection;
 use OldTimeGuitarGuy\SingleTableInheritance\StiParent;
 
 /**
@@ -75,6 +75,6 @@ class Split extends StiParent
      */
     protected static function stiChildren()
     {
-        return config('budget.split_types');
+        return config('pinch.splitTypes');
     }
 }
