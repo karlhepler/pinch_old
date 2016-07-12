@@ -1,0 +1,20 @@
+{
+    "name": "oldtimeguitarguy/plaid",
+    "description": "My own interface with the Plaid API",
+    "require": {
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Karl Hepler",
+            "email": "khepler@brandmovers.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "OldTimeGuitarGuy\\Plaid\\": "src/OldTimeGuitarGuy/Plaid/"
+        }
+    }
+}
