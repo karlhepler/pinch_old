@@ -53,17 +53,18 @@ class Plaid implements Contracts\PlaidClient
     /**
      * Authenticate a user & get its access token
      *
+     * @param  string $institutionCode
      * @param  string $username
      * @param  string $password
      * @return string
      */
-    public function authenticate($username, $password)
+    public function authenticate($institutionCode, $username, $password)
     {
         return $this->request('connect', [
             'username' => $username,
             'password' => $password,
-            'type' => 'wells',
-            'options' => json_encode([
+            'type'     => $institutionCode,
+            'options'  => json_encode([
                 'login_only' => true
             ])
         ]);

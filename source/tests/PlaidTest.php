@@ -24,7 +24,7 @@ class PlaidTest extends TestCase
      */
     function it_can_authenticate_a_user()
     {
-        $response = $this->plaid->authenticate($this->username, $this->password);
+        $response = $this->plaid->authenticate('wells', $this->username, $this->password);
 
         dd( json_decode($response->getBody()->getContents()) );
     }
