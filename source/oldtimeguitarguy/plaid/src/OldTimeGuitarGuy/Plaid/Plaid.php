@@ -2,155 +2,91 @@
 
 namespace OldTimeGuitarGuy\Plaid;
 
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Exception\BadResponseException;
-use OldTimeGuitarGuy\Plaid\Exceptions\PlaidException;
-use OldTimeGuitarGuy\Plaid\Exceptions\MfaRequiredException;
-
-/**
- * This is the main entry point for Plaid.
- * Reference the contract for an easy method list.
- * 
- * https://plaid.com/docs/api
- */
-class Plaid implements Contracts\PlaidClient
+class Plaid
 {
     /**
-     * The guzzle client
+     * The available Plaid services
      *
-     * @var GuzzleClient
+     * @var array
      */
-    protected $http;
+    protected $services = [
+        'connnect' => Services\Connect::class,
+        'auth' => Services\Auth::class,
+        'info' => Services\Info::class,
+        'income' => Services\Income::class,
+        'risk' => Services\Risk::class,
+        'balance' => Services\Balance::class,
+        'upgrade' => Services\Upgrade::class,
+        'institutions' => Services\Institutions::class,
+        'categories' => Services\Categories::class,
+    ];
 
     /**
-     * The client id used to connect with plaid
+     * Plaid services instance cache
      *
-     * @var string
+     * @var array
      */
-    protected $clientId;
+    protected $instances = [];
 
     /**
-     * The secret used to connect with plaid
+     * The Plaid request object
      *
-     * @var string
+     * @var Contracts\Http\Request
      */
-    protected $secret;
+    protected $request;
 
     /**
-     * Create a new instance of Plaid.
-     * The instance expects that the guzzle client
-     * already has a base_uri defined:
-     * http://docs.guzzlephp.org/en/latest/quickstart.html
+     * Create a new instance of Plaid
      *
-     * @param GuzzleClient $http
-     * @param string       $clientId
-     * @param string       $secret
+     * @param Contracts\Http\Request $request
      */
-    public function __construct(GuzzleClient $http, $clientId, $secret)
+    public function __construct(Contracts\Http\Request $request)
     {
-        $this->http = $http;
-        $this->clientId = $clientId;
-        $this->secret = $secret;
-    }
-
-    ////////////////////
-    // PUBLIC METHODS //
-    ////////////////////
-
-    /**
-     * Authenticate an account
-     *
-     * @param  \OldTimeGuitarGuy\Plaid\PlaidAccount $account
-     * @param  array $options
-     * @return \stdClass
-     */
-    public function addUser(PlaidAccount $account, array $options = [])
-    {
-        $response = $this->request('connect', $account->with($options));
-
-        return $this->decode($response);
+        $this->request = $request;
     }
 
     /**
-     * Submit mfa information
+     * Return an instance of the given service
      *
-     * @param  \OldTimeGuitarGuy\Plaid\Contracts\PlaidUser $user
-     * @param  string    $mfa
-     * @param  array     $options
-     * @return \stdClass
+     * @param  string $service
+     * @return mixed
      */
-    public function mfa(PlaidUser $user, $mfa, array $options = [])
+    public function make($service)
     {
-        $response = $this->request('connect/step', [
-            'access_token' => $user->accessToken(),
-            'mfa' => $mfa,
-            'options' => json_encode($options),
-        ]);
+        // If we already have an instance, then just return it
+        if (isset($this->instances[$service])) {
+            return $this->instances[$service];
+        }
 
-        return $this->decode($response);
+        // Otherwise, create it, save it, & return it
+        return $this->instances[$service] = new $this->services[$service]($this->request);
     }
 
-    ///////////////////////
-    // PROTECTED METHODS //
-    ///////////////////////
-
     /**
-     * Make a request to a Plaid endpoint,
-     * passing in the given parameters.
+     * Dynamically call a plaid service
      *
-     * @param  string $endpoint
-     * @param  array  $parameters
-     * @return \GuzzleHttp\Psr7\Response
-     *
-     * @throws \OldTimeGuitarGuy\Plaid\Exceptions\PlaidException
-     * @throws \GuzzleHttp\Exception\TransferException
+     * @param  string $method
+     * @param  array  $arguments
+     * @return mixed
      */
-    protected function request($endpoint, array $parameters)
+    public function __call($method, array $arguments)
     {
         try {
-            $response = $this->http->post($endpoint, [
-                'form_params' => array_merge(
-                    ['client_id' => $this->clientId, 'secret' => $this->secret],
-                    $parameters
-                )
-            ]);
-
-            $this->checkMfaRequired($response);
-
-            return $response;
+            return $this->make($method);
         }
-        catch (BadResponseException $e) {
-            throw PlaidException::newInstance(
-                json_decode($e->getResponse()->getBody()->getContents())
-            );
+        catch (\Exception $e) {
+            throw new \BadMethodCallException("{$method} is an invalid Plaid service.");
         }
     }
 
     /**
-     * Check to see if MFA is required.
-     * If it is, throw MfaRequiredException
+     * Allow accessing services as properties
      *
-     * @param  \GuzzleHttp\Psr7\Response $response
-     * @return void
-     *
-     * @throws \OldTimeGuitarGuy\Plaid\Exceptions\MfaRequiredException
+     * @param  string $name
+     * @return mixed
      */
-    protected function checkMfaRequired(Response $response)
+    public function __get($name)
     {
-        if ( $response->getStatusCode() === PlaidErrors::MFA_REQUIRED ) {
-            throw new MfaRequiredException($this->decode($response));
-        }
-    }
-
-    /**
-     * Decode the response to json
-     *
-     * @param  \GuzzleHttp\Psr7\Response $response
-     * @return \stdClass
-     */
-    protected function decode(Response $response)
-    {
-        return json_decode($response->getBody()->getContents());
+        return $this->{$name}();
     }
 }
