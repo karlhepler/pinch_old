@@ -24,6 +24,11 @@ class Connect extends Service
 
     /**
      * Add Connect user
+     *
+     * Test Credentials:
+     * username = plaid_test
+     * password = plaid_good
+     * pin = 1234
      * 
      * https://plaid.com/docs/api/#add-connect-user
      *
@@ -42,7 +47,7 @@ class Connect extends Service
             $options = $pin;
             $pin = null;
         }
-
+        
         return $this->request->post($this->endpoint, get_defined_vars());
     }
 
@@ -51,13 +56,13 @@ class Connect extends Service
      *
      * https://plaid.com/docs/api/#connect-mfa
      *
-     * @param  string $mfa          The extra information needed in the format: {mfa:'xxxxx'}.
      * @param  string $access_token The ACCESS_TOKEN returned when the user was added.
+     * @param  string $mfa          The extra information needed in the format: {mfa:'xxxxx'}.
      * @param  array  $options
      * 
      * @return \OldTimeGuitarGuy\Plaid\Contracts\Http\Response
      */
-    public function mfa($mfa, $access_token, $options = [])
+    public function mfa($access_token, $mfa, $options = [])
     {
         return $this->request->post("{$this->endpoint}/step", get_defined_vars());
     }
@@ -82,14 +87,14 @@ class Connect extends Service
      *
      * https://plaid.com/docs/api/#update-connect-user
      *
+     * @param  string $access_token The ACCESS_TOKEN of the user you wish to update.
      * @param  string $username     Username associated with the user's financial institution.
      * @param  string $password     Password associated with the user's financial institution.
-     * @param  string $access_token The ACCESS_TOKEN of the user you wish to update.
      * @param  mixed  $pin          Pin number associated with the user's financial institution. (usaa only)
      * 
      * @return \OldTimeGuitarGuy\Plaid\Contracts\Http\Response
      */
-    public function updateUser($username, $password, $access_token, $pin = null)
+    public function updateUser($access_token, $username, $password, $pin = null)
     {
         return $this->request->patch($this->endpoint, get_defined_vars());
     }

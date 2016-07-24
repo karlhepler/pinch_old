@@ -23,8 +23,12 @@ class PlaidTest extends TestCase
     function it_can_authenticate_a_user()
     {
         $options = ['login_only' => true];
-        $response = $this->plaid->connect->addUser('wells', 'plaid_test', 'plaid_good', $options);
-
-        dd($response);
+        $auResponse = $this->plaid->connect->addUser('usaa', 'plaid_test', 'plaid_good', 1234, $options);
+        $mfaResponse = $this->plaid->connect->mfa($auResponse->access_token, 'tomato', $options);
+        $gtResponse = $this->plaid->connect->getTransactions($mfaResponse->access_token);
+        $usResponse = $this->plaid->connect->updateUser($gtResponse->access_token, 'plaid_test', 'plaid_good', 1234);
+        $mfa2Response = $this->plaid->connect->mfa($auResponse->access_token, 'tomato', $options);
+        $duResponse = $this->plaid->connect->deleteUser($mfa2Response->access_token);
+        dd($duResponse);
     }
 }

@@ -16,14 +16,14 @@ class Plaid
      */
     protected $services = [
         'connect' => Services\Connect::class,
-        'auth' => Services\Auth::class,
-        'info' => Services\Info::class,
-        'income' => Services\Income::class,
-        'risk' => Services\Risk::class,
-        'balance' => Services\Balance::class,
-        'upgrade' => Services\Upgrade::class,
-        'institutions' => Services\Institutions::class,
-        'categories' => Services\Categories::class,
+        // 'auth' => Services\Auth::class,
+        // 'info' => Services\Info::class,
+        // 'income' => Services\Income::class,
+        // 'risk' => Services\Risk::class,
+        // 'balance' => Services\Balance::class,
+        // 'upgrade' => Services\Upgrade::class,
+        // 'institutions' => Services\Institutions::class,
+        // 'categories' => Services\Categories::class,
     ];
 
     /**

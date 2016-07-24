@@ -1,6 +1,6 @@
 {
     "name": "oldtimeguitarguy/plaid",
-    "description": "My own interface with the Plaid API",
+    "description": "PHP Plaid API Client with some Laravel extras",
     "require": {
         "guzzlehttp/guzzle": "^6.2"
     },
