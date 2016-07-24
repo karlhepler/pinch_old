@@ -50,10 +50,8 @@ class Request implements RequestContract
      *
      * @param  string $endpoint
      * @param  array  $parameters
+     * 
      * @return \OldTimeGuitarGuy\Plaid\Contracts\Http\Response
-     *
-     *
-     * @throws \OldTimeGuitarGuy\Plaid\Exceptions\PlaidRequestException
      */
     public function post($endpoint, array $parameters = [])
     {
@@ -76,9 +74,8 @@ class Request implements RequestContract
      *
      * @param  string $endpoint
      * @param  array  $parameters
-     * @return \OldTimeGuitarGuy\Plaid\Contracts\Http\Response
      * 
-     * @throws \OldTimeGuitarGuy\Plaid\Exceptions\PlaidRequestException
+     * @return \OldTimeGuitarGuy\Plaid\Contracts\Http\Response
      */
     public function patch($endpoint, array $parameters = [])
     {
@@ -97,9 +94,8 @@ class Request implements RequestContract
      *
      * @param  string $endpoint
      * @param  array  $parameters
-     * @return \OldTimeGuitarGuy\Plaid\Contracts\Http\Response
      * 
-     * @throws \OldTimeGuitarGuy\Plaid\Exceptions\PlaidRequestException
+     * @return \OldTimeGuitarGuy\Plaid\Contracts\Http\Response
      */
     public function delete($endpoint, array $parameters = [])
     {
@@ -118,9 +114,8 @@ class Request implements RequestContract
      *
      * @param  string $endpoint
      * @param  array  $parameters
-     * @return \OldTimeGuitarGuy\Plaid\Contracts\Http\Response
      * 
-     * @throws \OldTimeGuitarGuy\Plaid\Exceptions\PlaidRequestException
+     * @return \OldTimeGuitarGuy\Plaid\Contracts\Http\Response
      */
     public function get($endpoint, array $parameters = [])
     {
@@ -141,8 +136,8 @@ class Request implements RequestContract
      * @param  string $method
      * @param  string $endpoint
      * @param  array $options
-     * @return \OldTimeGuitarGuy\Plaid\Http\Response
      * 
+     * @return \OldTimeGuitarGuy\Plaid\Http\Response
      * @throws \OldTimeGuitarGuy\Plaid\Exceptions\PlaidRequestException
      */
     protected function respond($method, $endpoint, $options)
@@ -161,6 +156,7 @@ class Request implements RequestContract
      * Build & return the uri
      *
      * @param  string $endpoint
+     * 
      * @return string
      */
     protected function uri($endpoint)

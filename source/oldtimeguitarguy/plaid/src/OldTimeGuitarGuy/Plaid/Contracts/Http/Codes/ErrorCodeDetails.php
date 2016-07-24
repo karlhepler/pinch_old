@@ -1,10 +1,34 @@
 <?php
 
-namespace OldTimeGuitarGuy\Plaid\Contracts;
+namespace OldTimeGuitarGuy\Plaid\Contracts\Http\Codes;
 
-interface PlaidErrors
+/**
+ * Codes safe for client:
+ * 
+ * static::INVALID_CREDENTIALS,
+ * static::INVALID_USERNAME,
+ * static::INVALID_PASSWORD,
+ * static::INVALID_MFA,
+ * static::ACCOUNT_LOCKED,
+ * static::ACCOUNT_NOT_SETUP,
+ * static::COUNTRY_NOT_SUPPORTED,
+ * static::MFA_NOT_SUPPORTED,
+ * static::INVALID_PIN,
+ * static::ACCOUNT_NOT_SUPPORTED,
+ * static::BOFA_ACCOUNT_NOT_SUPPORTED,
+ * static::NO_ACCOUNTS,
+ * static::MFA_RESET,
+ * static::MFA_NOT_REQUIRED,
+ * static::INSTITUTION_NOT_AVAILABLE,
+ * static::INSTITUTION_NOT_RESPONDING,
+ * static::INSTITUTION_DOWN,
+ * static::INSTITUTION_NO_LONGER_SUPPORTED,
+ * static::USER_NOT_FOUND,
+ * static::ITEM_NOT_FOUND,
+ * static::EXTRACTOR_ERROR,
+ */
+interface ErrorCodeDetails
 {
-    const MFA_REQUIRED                    = 201;
     const ACCESS_TOKEN_MISSING            = 1000;
     const TYPE_MISSING                    = 1001;
     const ACCESS_TOKEN_DISALLOWED         = 1003;

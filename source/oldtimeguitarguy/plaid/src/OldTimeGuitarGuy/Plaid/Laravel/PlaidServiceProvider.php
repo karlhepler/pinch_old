@@ -5,7 +5,7 @@ namespace OldTimeGuitarGuy\Plaid\Laravel;
 use OldTimeGuitarGuy\Plaid\Plaid;
 use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Support\ServiceProvider;
-use OldTimeGuitarGuy\Plaid\Contracts\PlaidClient;
+use OldTimeGuitarGuy\Plaid\Http\Request as PlaidRequest;
 
 class PlaidServiceProvider extends ServiceProvider
 {
@@ -28,14 +28,17 @@ class PlaidServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(PlaidClient::class, function($app) {
-            return new Plaid(
-                new GuzzleClient([
-                    'base_uri' => $app['config']['plaid.host'],
-                ]),
-                $app['config']['plaid.clientId'],
-                $app['config']['plaid.secret']
+        $this->app->singleton(Plaid::class, function($app) {
+            // Create the request instance
+            $request = new PlaidRequest(
+                new GuzzleClient,
+                $app['config']['plaid.client_id'],
+                $app['config']['plaid.secret'],
+                $app['config']['plaid.use_production']
             );
+
+            // Return the Plaid instance
+            return new Plaid($request);
         });
     }
 }

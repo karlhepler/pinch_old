@@ -12,9 +12,8 @@ interface Request
      *
      * @param  string $endpoint
      * @param  array  $parameters
-     * @return \OldTimeGuitarGuy\Plaid\Contracts\Http\Response
      * 
-     * @throws \OldTimeGuitarGuy\Plaid\Exceptions\PlaidRequestException
+     * @return \OldTimeGuitarGuy\Plaid\Contracts\Http\Response
      */
     public function post($endpoint, array $parameters = []);
 
@@ -23,9 +22,8 @@ interface Request
      *
      * @param  string $endpoint
      * @param  array  $parameters
-     * @return \OldTimeGuitarGuy\Plaid\Contracts\Http\Response
      * 
-     * @throws \OldTimeGuitarGuy\Plaid\Exceptions\PlaidRequestException
+     * @return \OldTimeGuitarGuy\Plaid\Contracts\Http\Response
      */
     public function patch($endpoint, array $parameters = []);
 
@@ -34,9 +32,8 @@ interface Request
      *
      * @param  string $endpoint
      * @param  array  $parameters
-     * @return \OldTimeGuitarGuy\Plaid\Contracts\Http\Response
      * 
-     * @throws \OldTimeGuitarGuy\Plaid\Exceptions\PlaidRequestException
+     * @return \OldTimeGuitarGuy\Plaid\Contracts\Http\Response
      */
     public function delete($endpoint, array $parameters = []);
 
@@ -45,9 +42,8 @@ interface Request
      *
      * @param  string $endpoint
      * @param  array  $parameters
-     * @return \OldTimeGuitarGuy\Plaid\Contracts\Http\Response
      * 
-     * @throws \OldTimeGuitarGuy\Plaid\Exceptions\PlaidRequestException
+     * @return \OldTimeGuitarGuy\Plaid\Contracts\Http\Response
      */
     public function get($endpoint, array $parameters = []);
 }
