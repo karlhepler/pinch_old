@@ -15,7 +15,7 @@ class Plaid
      * @var array
      */
     protected $services = [
-        'connnect' => Services\Connect::class,
+        'connect' => Services\Connect::class,
         'auth' => Services\Auth::class,
         'info' => Services\Info::class,
         'income' => Services\Income::class,

@@ -1,7 +1,6 @@
 <?php
 
-use OldTimeGuitarGuy\Plaid\PlaidAccount;
-use OldTimeGuitarGuy\Plaid\Contracts\PlaidClient;
+use OldTimeGuitarGuy\Plaid\Plaid;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -9,18 +8,13 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class PlaidTest extends TestCase
 {
     protected $plaid;
-    protected $account;
 
     /**
      * @before
      */
     public function initialize()
     {
-        $this->plaid = app(PlaidClient::class);
-
-        $this->account = new \stdClass;
-        $this->account->valid = new PlaidAccount('wells', 'plaid_test', 'plaid_good');
-        $this->account->invalid = new PlaidAccount('wells', 'plaid_test', 'plaid_bad');
+        $this->plaid = app(Plaid::class);
     }
 
     /**
@@ -29,7 +23,7 @@ class PlaidTest extends TestCase
     function it_can_authenticate_a_user()
     {
         $options = ['login_only' => true];
-        $response = $this->plaid->connect($this->account->valid, $options);
+        $response = $this->plaid->connect->addUser('wells', 'plaid_test', 'plaid_good', $options);
 
         dd($response);
     }

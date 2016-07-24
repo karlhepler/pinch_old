@@ -29,7 +29,7 @@ class Response implements ResponseContract
     public function __construct(ResponseInterface $response)
     {
         $this->statusCode = $response->getStatusCode();
-        $this->content = json_decode($response->getBody()->getContent());
+        $this->content = json_decode($response->getBody()->getContents());
     }
 
     /**

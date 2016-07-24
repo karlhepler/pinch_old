@@ -144,7 +144,7 @@ class Request implements RequestContract
     {
         try {
             return new Response(
-                $this->request($method, $this->uri($endpoint), $options)
+                $this->http->request($method, $this->uri($endpoint), $options)
             );
         }
         catch (BadResponseException $e) {
