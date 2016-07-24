@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "oldtimeguitarguy/eloquent-single-table-inheritance": "^1.0",
         "oldtimeguitarguy/laravel-event-subscriber": "^1.0",
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^6.2",
+        "oldtimeguitarguy/plaid": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

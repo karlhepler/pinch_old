@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b066f3164e5125b43c1945b381e6a085",
-    "content-hash": "4d30e95b552cd3ca982b9dd46986520b",
+    "hash": "e7ccfb200aae55c79ad74b3ee015e2fd",
+    "content-hash": "afdf051c8ddc3765c615d88882638746",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -974,6 +974,42 @@
             ],
             "description": "This makes your event subscribers a little cleaner",
             "time": "2016-07-09 18:54:14"
+        },
+        {
+            "name": "oldtimeguitarguy/plaid",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oldtimeguitarguy/plaid.git",
+                "reference": "4b4d65edf0a06e0bad8a0f25041e7935bef3d331"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oldtimeguitarguy/plaid/zipball/4b4d65edf0a06e0bad8a0f25041e7935bef3d331",
+                "reference": "4b4d65edf0a06e0bad8a0f25041e7935bef3d331",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "OldTimeGuitarGuy\\Plaid\\": "src/OldTimeGuitarGuy/Plaid/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Karl Hepler",
+                    "email": "khepler@brandmovers.com"
+                }
+            ],
+            "description": "PHP Plaid API Client with some Laravel extras",
+            "time": "2016-07-24 04:20:08"
         },
         {
             "name": "paragonie/random_compat",
