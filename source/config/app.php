@@ -204,6 +204,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Plaid' => OldTimeGuitarGuy\Plaid\Laravel\PlaidFacade::class,
+
     ],
 
 ];

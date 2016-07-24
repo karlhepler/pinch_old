@@ -2,7 +2,7 @@
 
 namespace OldTimeGuitarGuy\Plaid\Services;
 
-class Income
+class Income extends Base\Service
 {
     //
 }

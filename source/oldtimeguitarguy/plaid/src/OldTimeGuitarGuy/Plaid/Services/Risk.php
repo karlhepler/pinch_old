@@ -2,7 +2,7 @@
 
 namespace OldTimeGuitarGuy\Plaid\Services;
 
-class Risk
+class Risk extends Base\Service
 {
     //
 }

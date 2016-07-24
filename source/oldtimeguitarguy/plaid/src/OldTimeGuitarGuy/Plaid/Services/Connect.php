@@ -13,7 +13,7 @@ namespace OldTimeGuitarGuy\Plaid\Services;
  *
  * https://plaid.com/docs/api/#connect
  */
-class Connect extends Service
+class Connect extends Base\Service
 {
     /**
      * The base endpoint for all requests

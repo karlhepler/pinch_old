@@ -2,7 +2,7 @@
 
 namespace OldTimeGuitarGuy\Plaid\Services;
 
-class Auth
+class Auth extends Base\Service
 {
     //
 }

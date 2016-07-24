@@ -2,7 +2,7 @@
 
 namespace OldTimeGuitarGuy\Plaid\Services;
 
-class Institutions
+class Institutions extends Base\Service
 {
     //
 }

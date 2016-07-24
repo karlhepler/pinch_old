@@ -2,7 +2,7 @@
 
 namespace OldTimeGuitarGuy\Plaid\Services;
 
-class Categories
+class Categories extends Base\Service
 {
     //
 }

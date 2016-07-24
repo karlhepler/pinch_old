@@ -2,7 +2,7 @@
 
 namespace OldTimeGuitarGuy\Plaid\Services;
 
-class Balance
+class Balance extends Base\Service
 {
     //
 }

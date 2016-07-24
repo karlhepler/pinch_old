@@ -28,7 +28,7 @@ class PlaidTest extends TestCase
         $gtResponse = $this->plaid->connect->getTransactions($mfaResponse->access_token);
         $usResponse = $this->plaid->connect->updateUser($gtResponse->access_token, 'plaid_test', 'plaid_good', 1234);
         $mfa2Response = $this->plaid->connect->mfa($auResponse->access_token, 'tomato', $options);
-        $duResponse = $this->plaid->connect->deleteUser($mfa2Response->access_token);
+        $duResponse = \Plaid::connect()->deleteUser($mfa2Response->access_token);
         dd($duResponse);
     }
 }

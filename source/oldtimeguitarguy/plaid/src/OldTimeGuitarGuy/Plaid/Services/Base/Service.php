@@ -1,6 +1,6 @@
 <?php
 
-namespace OldTimeGuitarGuy\Plaid\Services;
+namespace OldTimeGuitarGuy\Plaid\Services\Base;
 
 use OldTimeGuitarGuy\Plaid\Contracts\Http\Request;
 

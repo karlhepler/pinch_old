@@ -2,7 +2,7 @@
 
 namespace OldTimeGuitarGuy\Plaid\Services;
 
-class Info
+class Info extends Base\Service
 {
     //
 }

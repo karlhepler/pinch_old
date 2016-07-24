@@ -2,7 +2,7 @@
 
 namespace OldTimeGuitarGuy\Plaid\Contracts\Http;
 
-interface Response extends Codes\ResponseCodes, Codes\ErrorCodeDetails
+interface Response
 {
     /**
      * Get the status code

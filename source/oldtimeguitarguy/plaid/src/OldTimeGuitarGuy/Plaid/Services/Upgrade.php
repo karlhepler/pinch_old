@@ -2,7 +2,7 @@
 
 namespace OldTimeGuitarGuy\Plaid\Services;
 
-class Upgrade
+class Upgrade extends Base\Service
 {
     //
 }
