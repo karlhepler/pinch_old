@@ -79,12 +79,12 @@ class Accountant extends FluentFactory
      * Specify the type as a string
      * Reference config/budget.account_types
      *
-     * @param  string $type
+     * @param  integer $type
      * @return $this
      */
     public function ofType($type)
     {
-        $this->AccountClass = config('pinch.accountTypes')[$type];
+        $this->AccountClass = Account::$stiChildren[$type];
 
         return $this;
     }

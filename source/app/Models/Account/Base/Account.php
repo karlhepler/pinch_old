@@ -20,6 +20,13 @@ class Account extends StiParent
         Traits\Relationships,
         Traits\AttributeMutators;
 
+    /** Account Types */
+    const ASSET     = 1;
+    const EQUITY    = 2;
+    const EXPENSE   = 3;
+    const INCOME    = 4;
+    const LIABILITY = 5;
+
     /**
      * The table associated with the model.
      *
@@ -34,6 +41,20 @@ class Account extends StiParent
      */
     protected $fillable = [
         'name', 'type', 'user_id', 'parent_account_id'
+    ];
+
+    /**
+     * A hash of children.
+     * ex: ['stringType' => ActualType::class, ...]
+     *
+     * @var array
+     */
+    protected static $stiChildren = [
+        static::ASSET     => \App\Models\Account\Asset::class,
+        static::EQUITY    => \App\Models\Account\Equity::class,
+        static::EXPENSE   => \App\Models\Account\Expense::class,
+        static::INCOME    => \App\Models\Account\Income::class,
+        static::LIABILITY => \App\Models\Account\Liability::class,
     ];
 
     /**
@@ -93,19 +114,5 @@ class Account extends StiParent
             ->forUser($this->user)
             ->childOf($this->parent_account)
             ->ofType($this->type);
-    }
-
-    //////////////////////////////
-    // PROTECTED STATIC METHODS //
-    //////////////////////////////
-
-    /**
-     * Get the single table inheritance children
-     *
-     * @return array
-     */
-    protected static function stiChildren()
-    {
-        return config('pinch.accountTypes');
     }
 }

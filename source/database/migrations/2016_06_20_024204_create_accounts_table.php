@@ -17,7 +17,7 @@ class CreateAccountsTable extends Migration
             $table->timestamps();
 
             $table->string('name')->index();
-            $table->enum('type', array_keys(config('pinch.accountTypes')))->index();
+            $table->unsignedTinyInteger('type')->index();
             
             // Keep track of balances in real tim
             $table->unsignedInteger('balance')->default(0);

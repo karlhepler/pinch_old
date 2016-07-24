@@ -24,6 +24,10 @@ class Split extends StiParent
         Traits\Relationships,
         Traits\AttributeMutators;
 
+    /** Split Types */
+    const CREDIT = 1;
+    const DEBIT  = 2;
+
     /**
      * The table associated with the model.
      *
@@ -38,6 +42,17 @@ class Split extends StiParent
      */
     protected $fillable = [
         'type', 'amount', 'memo', 'account_id', 'transaction_id'
+    ];
+
+    /**
+     * A hash of children.
+     * ex: ['stringType' => ActualType::class, ...]
+     *
+     * @var array
+     */
+    protected static $stiChildren = [
+        static::CREDIT => \App\Models\Split\Credit::class,
+        static::DEBIT  => \App\Models\Split\Debit::class,
     ];
 
     /**
@@ -62,19 +77,5 @@ class Split extends StiParent
     public function original()
     {
         return Splitter::newInstance($this->getOriginal());
-    }
-
-    //////////////////////////////
-    // PROTECTED STATIC METHODS //
-    //////////////////////////////
-
-    /**
-     * Get the single table inheritance children
-     *
-     * @return array
-     */
-    protected static function stiChildren()
-    {
-        return config('pinch.splitTypes');
     }
 }

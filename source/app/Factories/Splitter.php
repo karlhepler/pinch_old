@@ -2,6 +2,8 @@
 
 namespace App\Factories;
 
+use App\Models\Split\Base\Split;
+
 /**
  * How do you create splits?
  * With a splitter, of course!
@@ -17,7 +19,7 @@ class Splitter
     public static function newInstance(array $split)
     {
         // Get the class based on type
-        $class = config('pinch.splitTypes')[$split['type']];
+        $class = Split::$stiChildren[$split['type']];
 
         // Return a new instance of that class
         return new $class($split);
