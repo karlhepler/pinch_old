@@ -14,7 +14,7 @@ trait Relationships
      */
     public function splits()
     {
-        return $this->hasMany(Split::class);
+        return $this->hasMany(Split::class, 'transaction_id');
     }
 
     /**

@@ -10,7 +10,7 @@
         "oldtimeguitarguy/eloquent-single-table-inheritance": "^1.0",
         "oldtimeguitarguy/laravel-event-subscriber": "^1.0",
         "guzzlehttp/guzzle": "^6.2",
-        "oldtimeguitarguy/plaid": "^1.0"
+        "oldtimeguitarguy/plaid": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

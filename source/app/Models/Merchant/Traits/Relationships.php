@@ -13,6 +13,6 @@ trait Relationships
      */
     public function transactions()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(Transaction::class, 'merchant_id');
     }
 }

@@ -15,7 +15,7 @@ trait Relationships
      */
     public function splits()
     {
-        return $this->hasMany(Split::class);
+        return $this->hasMany(Split::class, 'account_id');
     }
 
     /**
@@ -45,7 +45,7 @@ trait Relationships
      */
     public function childAccounts()
     {
-        return $this->hasMany(Account::class);
+        return $this->hasMany(Account::class, 'account_id');
     }
 
     /**
